@@ -1,0 +1,10 @@
+{
+    "template": "fio-logs*",
+    "mappings": {
+        "properties": {
+            "time_ms": {
+            "type": "date" 
+      }
+    }
+  }
+}
