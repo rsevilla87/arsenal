@@ -1,5 +1,5 @@
 {
-    "template": "fio-logs*",
+    "template": "<es_index>-logs*",
     "mappings": {
         "properties": {
             "time_ms": {
