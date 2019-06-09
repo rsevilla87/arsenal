@@ -46,7 +46,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1560044795919,
+  "iteration": 1560049476905,
   "links": [],
   "panels": [
     {
@@ -637,31 +637,15 @@
           ],
           "metrics": [
             {
-              "field": "samples",
-              "id": "1",
-              "meta": {
-                "max": true,
-                "min": false,
-                "std_deviation_bounds_lower": false,
-                "std_deviation_bounds_upper": false
-              },
-              "pipelineAgg": "select metric",
-              "settings": {},
-              "type": "extended_stats"
-            },
-            {
               "field": "p95",
-              "id": "3",
-              "meta": {
-                "max": true,
-                "std_deviation_bounds_lower": false,
-                "std_deviation_bounds_upper": false
-              },
+              "id": "1",
+              "meta": {},
+              "pipelineAgg": "3",
               "settings": {},
-              "type": "extended_stats"
+              "type": "min"
             }
           ],
-          "query": "uuid: $uuid",
+          "query": "uuid: $uuid AND job_sequence: $job_sequence AND samples: $samples",
           "refId": "A",
           "timeField": "time_ms"
         }
@@ -738,17 +722,17 @@
             "value": "$__all"
           },
           {
-            "selected": false,
+            "selected": true,
             "text": "1",
             "value": "1"
           },
           {
-            "selected": true,
+            "selected": false,
             "text": "2",
             "value": "2"
           },
           {
-            "selected": true,
+            "selected": false,
             "text": "3",
             "value": "3"
           }
@@ -759,19 +743,19 @@
       },
       {
         "current": {
-          "text": "5654e893-54d1-52aa-a270-994ea47c5989",
-          "value": "5654e893-54d1-52aa-a270-994ea47c5989"
+          "text": "c7d3fcb2-c025-537a-9496-20250c6e6a27",
+          "value": "c7d3fcb2-c025-537a-9496-20250c6e6a27"
         },
         "hide": 0,
         "label": null,
         "name": "uuid",
         "options": [
           {
-            "text": "5e2b278e-ab75-5bd7-8d51-a51d9b7960e4",
-            "value": "5e2b278e-ab75-5bd7-8d51-a51d9b7960e4"
+            "text": "c7d3fcb2-c025-537a-9496-20250c6e6a27",
+            "value": "c7d3fcb2-c025-537a-9496-20250c6e6a27"
           }
         ],
-        "query": "5e2b278e-ab75-5bd7-8d51-a51d9b7960e4",
+        "query": "c7d3fcb2-c025-537a-9496-20250c6e6a27",
         "skipUrlSync": false,
         "type": "textbox"
       },
@@ -845,12 +829,34 @@
         "tagsQuery": "",
         "type": "query",
         "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_MARQUEZ-FIO}",
+        "definition": "{\"find\": \"terms\", \"field\": \"samples\"}",
+        "hide": 0,
+        "includeAll": true,
+        "label": null,
+        "multi": true,
+        "name": "samples",
+        "options": [],
+        "query": "{\"find\": \"terms\", \"field\": \"samples\"}",
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
       }
     ]
   },
   "time": {
-    "from": "2019-05-14T18:09:06.121Z",
-    "to": "2019-05-14T23:08:25.033Z"
+    "from": "now-1h",
+    "to": "now"
   },
   "timepicker": {
     "refresh_intervals": [
@@ -880,5 +886,5 @@
   "timezone": "",
   "title": "FIO - Storage Performance Dashboard",
   "uid": "sdpfsZWZk",
-  "version": 63
+  "version": 65
 }
