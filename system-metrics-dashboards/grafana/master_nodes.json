@@ -852,6 +852,7 @@
       "dashLength": 10,
       "dashes": false,
       "fill": 4,
+      "fillGradient": 0,
       "gridPos": {
         "h": 7,
         "w": 8,
@@ -872,16 +873,19 @@
       "lines": true,
       "linewidth": 1,
       "links": [],
-      "nullPointMode": "null",
+      "nullPointMode": "connected",
+      "options": {
+        "dataLinks": []
+      },
       "percentage": false,
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
       "seriesOverrides": [
         {
-          "alias": "Total",
-          "stack": false,
-          "fill": 0
+          "alias": "Total Physical",
+          "fill": 0,
+          "stack": false
         }
       ],
       "spaceLength": 10,
@@ -889,39 +893,70 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "sum(node_memory_MemTotal_bytes{instance=~\"master0\",job=~\".*\"})",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "Total Physical",
           "refId": "A",
-          "expr": "node_memory_MemTotal_bytes{instance=~\"master0\",job=~\".*\"}",
-          "legendFormat": "Total",
-          "intervalFactor": 2,
-          "hide": false
+          "instant": false
         },
         {
-          "expr": "node_memory_Active_bytes{instance=~\"master0\",job=~\".*\"}",
+          "expr": "sum(node_memory_Active_bytes{instance=~\"master0\",job=~\".*\"})",
           "format": "time_series",
-          "hide": false,
-          "intervalFactor": 2,
+          "hide": true,
+          "intervalFactor": 1,
           "legendFormat": "Active",
-          "refId": "F"
+          "refId": "F",
+          "instant": false
         },
         {
-          "expr": "node_memory_Cached_bytes{instance=~\"master0\",job=~\".*\"} + node_memory_Buffers_bytes{instance=~\"master0\",job=~\".*\"}",
+          "expr": "sum(node_memory_Cached_bytes{instance=~\"master0\",job=~\".*\"} + node_memory_Buffers_bytes{instance=~\"master0\",job=~\".*\"})",
           "format": "time_series",
           "hide": false,
-          "intervalFactor": 2,
+          "intervalFactor": 1,
           "legendFormat": "Cached + Buffers",
-          "refId": "B"
+          "refId": "B",
+          "instant": false
         },
         {
-          "expr": "node_memory_MemAvailable_bytes{instance=~\"master0\",job=~\".*\"} - (node_memory_Cached_bytes{instance=~\"master0\",job=~\".*\"} + node_memory_Buffers_bytes{instance=~\"master0\",job=~\".*\"})",
+          "expr": "sum(node_memory_MemAvailable_bytes{instance=~\"master0\",job=~\".*\"} - (node_memory_Cached_bytes{instance=~\"master0\",job=~\".*\"} + node_memory_Buffers_bytes{instance=~\"master0\",job=~\".*\"}))",
           "format": "time_series",
-          "hide": false,
-          "intervalFactor": 2,
+          "hide": true,
+          "intervalFactor": 1,
           "legendFormat": "Available",
           "refId": "D"
+        },
+        {
+          "refId": "C",
+          "expr": "sum(node_memory_Dirty_bytes{instance=~\"master0\",job=~\".*\"})",
+          "legendFormat": "Dirty",
+          "intervalFactor": 1
+        },
+        {
+          "refId": "E",
+          "expr": "sum(node_memory_AnonPages_bytes{instance=~\"master0\",job=~\".*\"})",
+          "legendFormat": "Anon Pages"
+        },
+        {
+          "refId": "G",
+          "expr": "sum(node_memory_Slab_bytes{instance=~\"master0\",job=~\".*\"})",
+          "legendFormat": "Kernel Slab"
+        },
+        {
+          "refId": "H",
+          "expr": "sum(node_memory_VmallocUsed_bytes{instance=~\"master0\",job=~\".*\"})",
+          "legendFormat": "VM Alloc Used"
+        },
+        {
+          "refId": "I",
+          "expr": "sum(node_memory_MemFree_bytes{instance=~\"master0\",job=~\".*\"})",
+          "legendFormat": "Free",
+          "hide": true
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "System Memory : master0",
       "tooltip": {
@@ -929,6 +964,7 @@
         "sort": 0,
         "value_type": "individual"
       },
+      "transparent": true,
       "type": "graph",
       "xaxis": {
         "buckets": null,
@@ -939,13 +975,13 @@
       },
       "yaxes": [
         {
+          "decimals": 1,
           "format": "bytes",
           "label": null,
           "logBase": 1,
           "max": null,
           "min": null,
-          "show": true,
-          "decimals": 1
+          "show": true
         },
         {
           "format": "short",
@@ -960,12 +996,7 @@
         "align": false,
         "alignLevel": null
       },
-      "transparent": true,
-      "options": {
-        "dataLinks": []
-      },
-      "fillGradient": 0,
-      "timeRegions": []
+      "hiddenSeries": false
     },
     {
       "datasource": "$datasource",
@@ -974,6 +1005,7 @@
       "dashLength": 10,
       "dashes": false,
       "fill": 4,
+      "fillGradient": 0,
       "gridPos": {
         "h": 7,
         "w": 8,
@@ -994,16 +1026,19 @@
       "lines": true,
       "linewidth": 1,
       "links": [],
-      "nullPointMode": "null",
+      "nullPointMode": "connected",
+      "options": {
+        "dataLinks": []
+      },
       "percentage": false,
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
       "seriesOverrides": [
         {
-          "alias": "Total",
-          "stack": false,
-          "fill": 0
+          "alias": "Total Physical",
+          "fill": 0,
+          "stack": false
         }
       ],
       "spaceLength": 10,
@@ -1011,39 +1046,70 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "sum(node_memory_MemTotal_bytes{instance=~\"master1\",job=~\".*\"})",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "Total Physical",
           "refId": "A",
-          "expr": "node_memory_MemTotal_bytes{instance=~\"master1\",job=~\".*\"}",
-          "legendFormat": "Total",
-          "intervalFactor": 2,
-          "hide": false
+          "instant": false
         },
         {
-          "expr": "node_memory_Active_bytes{instance=~\"master1\",job=~\".*\"}",
+          "expr": "sum(node_memory_Active_bytes{instance=~\"master1\",job=~\".*\"})",
           "format": "time_series",
-          "hide": false,
-          "intervalFactor": 2,
+          "hide": true,
+          "intervalFactor": 1,
           "legendFormat": "Active",
-          "refId": "F"
+          "refId": "F",
+          "instant": false
         },
         {
-          "expr": "node_memory_Cached_bytes{instance=~\"master1\",job=~\".*\"} + node_memory_Buffers_bytes{instance=~\"master1\",job=~\".*\"}",
+          "expr": "sum(node_memory_Cached_bytes{instance=~\"master1\",job=~\".*\"} + node_memory_Buffers_bytes{instance=~\"master1\",job=~\".*\"})",
           "format": "time_series",
           "hide": false,
-          "intervalFactor": 2,
+          "intervalFactor": 1,
           "legendFormat": "Cached + Buffers",
-          "refId": "B"
+          "refId": "B",
+          "instant": false
         },
         {
-          "expr": "node_memory_MemAvailable_bytes{instance=~\"master1\",job=~\".*\"} - (node_memory_Cached_bytes{instance=~\"master1\",job=~\".*\"} + node_memory_Buffers_bytes{instance=~\"master1\",job=~\".*\"})",
+          "expr": "sum(node_memory_MemAvailable_bytes{instance=~\"master1\",job=~\".*\"} - (node_memory_Cached_bytes{instance=~\"master1\",job=~\".*\"} + node_memory_Buffers_bytes{instance=~\"master1\",job=~\".*\"}))",
           "format": "time_series",
-          "hide": false,
-          "intervalFactor": 2,
+          "hide": true,
+          "intervalFactor": 1,
           "legendFormat": "Available",
           "refId": "D"
+        },
+        {
+          "refId": "C",
+          "expr": "sum(node_memory_Dirty_bytes{instance=~\"master1\",job=~\".*\"})",
+          "legendFormat": "Dirty",
+          "intervalFactor": 1
+        },
+        {
+          "refId": "E",
+          "expr": "sum(node_memory_AnonPages_bytes{instance=~\"master1\",job=~\".*\"})",
+          "legendFormat": "Anon Pages"
+        },
+        {
+          "refId": "G",
+          "expr": "sum(node_memory_Slab_bytes{instance=~\"master1\",job=~\".*\"})",
+          "legendFormat": "Kernel Slab"
+        },
+        {
+          "refId": "H",
+          "expr": "sum(node_memory_VmallocUsed_bytes{instance=~\"master1\",job=~\".*\"})",
+          "legendFormat": "VM Alloc Used"
+        },
+        {
+          "refId": "I",
+          "expr": "sum(node_memory_MemFree_bytes{instance=~\"master1\",job=~\".*\"})",
+          "legendFormat": "Free",
+          "hide": true
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "System Memory : master1",
       "tooltip": {
@@ -1051,6 +1117,7 @@
         "sort": 0,
         "value_type": "individual"
       },
+      "transparent": true,
       "type": "graph",
       "xaxis": {
         "buckets": null,
@@ -1061,13 +1128,13 @@
       },
       "yaxes": [
         {
+          "decimals": 1,
           "format": "bytes",
           "label": null,
           "logBase": 1,
           "max": null,
           "min": null,
-          "show": true,
-          "decimals": 1
+          "show": true
         },
         {
           "format": "short",
@@ -1082,12 +1149,7 @@
         "align": false,
         "alignLevel": null
       },
-      "transparent": true,
-      "options": {
-        "dataLinks": []
-      },
-      "fillGradient": 0,
-      "timeRegions": []
+      "hiddenSeries": false
     },
     {
       "datasource": "$datasource",
@@ -1096,6 +1158,7 @@
       "dashLength": 10,
       "dashes": false,
       "fill": 4,
+      "fillGradient": 0,
       "gridPos": {
         "h": 7,
         "w": 8,
@@ -1116,16 +1179,19 @@
       "lines": true,
       "linewidth": 1,
       "links": [],
-      "nullPointMode": "null",
+      "nullPointMode": "connected",
+      "options": {
+        "dataLinks": []
+      },
       "percentage": false,
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
       "seriesOverrides": [
         {
-          "alias": "Total",
-          "stack": false,
-          "fill": 0
+          "alias": "Total Physical",
+          "fill": 0,
+          "stack": false
         }
       ],
       "spaceLength": 10,
@@ -1133,39 +1199,70 @@
       "steppedLine": false,
       "targets": [
         {
+          "expr": "sum(node_memory_MemTotal_bytes{instance=~\"master2\",job=~\".*\"})",
+          "hide": false,
+          "intervalFactor": 1,
+          "legendFormat": "Total Physical",
           "refId": "A",
-          "expr": "node_memory_MemTotal_bytes{instance=~\"master2\",job=~\".*\"}",
-          "legendFormat": "Total",
-          "intervalFactor": 2,
-          "hide": false
+          "instant": false
         },
         {
-          "expr": "node_memory_Active_bytes{instance=~\"master2\",job=~\".*\"}",
+          "expr": "sum(node_memory_Active_bytes{instance=~\"master2\",job=~\".*\"})",
           "format": "time_series",
-          "hide": false,
-          "intervalFactor": 2,
+          "hide": true,
+          "intervalFactor": 1,
           "legendFormat": "Active",
-          "refId": "F"
+          "refId": "F",
+          "instant": false
         },
         {
-          "expr": "node_memory_Cached_bytes{instance=~\"master2\",job=~\".*\"} + node_memory_Buffers_bytes{instance=~\"master2\",job=~\".*\"}",
+          "expr": "sum(node_memory_Cached_bytes{instance=~\"master2\",job=~\".*\"} + node_memory_Buffers_bytes{instance=~\"master2\",job=~\".*\"})",
           "format": "time_series",
           "hide": false,
-          "intervalFactor": 2,
+          "intervalFactor": 1,
           "legendFormat": "Cached + Buffers",
-          "refId": "B"
+          "refId": "B",
+          "instant": false
         },
         {
-          "expr": "node_memory_MemAvailable_bytes{instance=~\"master2\",job=~\".*\"} - (node_memory_Cached_bytes{instance=~\"master2\",job=~\".*\"} + node_memory_Buffers_bytes{instance=~\"master2\",job=~\".*\"})",
+          "expr": "sum(node_memory_MemAvailable_bytes{instance=~\"master2\",job=~\".*\"} - (node_memory_Cached_bytes{instance=~\"master2\",job=~\".*\"} + node_memory_Buffers_bytes{instance=~\"master2\",job=~\".*\"}))",
           "format": "time_series",
-          "hide": false,
-          "intervalFactor": 2,
+          "hide": true,
+          "intervalFactor": 1,
           "legendFormat": "Available",
           "refId": "D"
+        },
+        {
+          "refId": "C",
+          "expr": "sum(node_memory_Dirty_bytes{instance=~\"master2\",job=~\".*\"})",
+          "legendFormat": "Dirty",
+          "intervalFactor": 1
+        },
+        {
+          "refId": "E",
+          "expr": "sum(node_memory_AnonPages_bytes{instance=~\"master2\",job=~\".*\"})",
+          "legendFormat": "Anon Pages"
+        },
+        {
+          "refId": "G",
+          "expr": "sum(node_memory_Slab_bytes{instance=~\"master2\",job=~\".*\"})",
+          "legendFormat": "Kernel Slab"
+        },
+        {
+          "refId": "H",
+          "expr": "sum(node_memory_VmallocUsed_bytes{instance=~\"master2\",job=~\".*\"})",
+          "legendFormat": "VM Alloc Used"
+        },
+        {
+          "refId": "I",
+          "expr": "sum(node_memory_MemFree_bytes{instance=~\"master2\",job=~\".*\"})",
+          "legendFormat": "Free",
+          "hide": true
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "System Memory : master2",
       "tooltip": {
@@ -1173,6 +1270,7 @@
         "sort": 0,
         "value_type": "individual"
       },
+      "transparent": true,
       "type": "graph",
       "xaxis": {
         "buckets": null,
@@ -1183,13 +1281,13 @@
       },
       "yaxes": [
         {
+          "decimals": 1,
           "format": "bytes",
           "label": null,
           "logBase": 1,
           "max": null,
           "min": null,
-          "show": true,
-          "decimals": 1
+          "show": true
         },
         {
           "format": "short",
@@ -1204,12 +1302,7 @@
         "align": false,
         "alignLevel": null
       },
-      "transparent": true,
-      "options": {
-        "dataLinks": []
-      },
-      "fillGradient": 0,
-      "timeRegions": []
+      "hiddenSeries": false
     },
     {
       "datasource": "$datasource",
