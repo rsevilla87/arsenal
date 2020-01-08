@@ -16,7 +16,7 @@
   "editable": true,
   "gnetId": 10092,
   "graphTooltip": 0,
-  "id": 4,
+  "id": null,
   "iteration": 1570797829545,
   "links": [],
   "panels": [
@@ -1994,6 +1994,6 @@
   },
   "timezone": "",
   "title": "OpenShift Cluster Performance Dashboard",
-  "uid": "",
+  "uid": null,
   "version": 15
 }
