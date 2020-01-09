@@ -17,7 +17,7 @@
   "gnetId": 10092,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1570797829545,
+  "iteration": 1578594321153,
   "links": [],
   "panels": [
     {
@@ -48,6 +48,7 @@
         "x": 0,
         "y": 1
       },
+      "hiddenSeries": false,
       "id": 122,
       "legend": {
         "alignAsTable": true,
@@ -89,7 +90,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Top 10 Memory usage",
+      "title": "$clustername - Top 10 Memory usage",
       "tooltip": {
         "shared": true,
         "sort": 2,
@@ -140,6 +141,7 @@
         "x": 12,
         "y": 1
       },
+      "hiddenSeries": false,
       "id": 141,
       "legend": {
         "alignAsTable": true,
@@ -149,6 +151,7 @@
         "min": false,
         "rightSide": true,
         "show": true,
+        "sideWidth": 250,
         "total": false,
         "values": true
       },
@@ -187,7 +190,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "400/500 requests",
+      "title": "$clustername - 400/500 requests",
       "tooltip": {
         "shared": true,
         "sort": 2,
@@ -238,6 +241,7 @@
         "x": 0,
         "y": 9
       },
+      "hiddenSeries": false,
       "id": 116,
       "legend": {
         "alignAsTable": true,
@@ -247,6 +251,7 @@
         "min": false,
         "rightSide": true,
         "show": true,
+        "sideWidth": 250,
         "total": false,
         "values": false
       },
@@ -278,7 +283,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "API Request Count",
+      "title": "$clustername - API Request Count",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -329,6 +334,7 @@
         "x": 12,
         "y": 9
       },
+      "hiddenSeries": false,
       "id": 142,
       "legend": {
         "alignAsTable": true,
@@ -421,6 +427,7 @@
         "x": 0,
         "y": 17
       },
+      "hiddenSeries": false,
       "id": 120,
       "legend": {
         "alignAsTable": true,
@@ -430,6 +437,7 @@
         "min": false,
         "rightSide": true,
         "show": true,
+        "sideWidth": 250,
         "total": false,
         "values": true
       },
@@ -461,7 +469,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Number of nodes",
+      "title": "$clustername - Number of nodes",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -512,6 +520,7 @@
         "x": 12,
         "y": 17
       },
+      "hiddenSeries": false,
       "id": 114,
       "legend": {
         "alignAsTable": true,
@@ -553,7 +562,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Goroutines Count",
+      "title": "$clustername Goroutines Count",
       "tooltip": {
         "shared": true,
         "sort": 2,
@@ -604,6 +613,7 @@
         "x": 0,
         "y": 25
       },
+      "hiddenSeries": false,
       "id": 101,
       "legend": {
         "alignAsTable": true,
@@ -666,7 +676,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "pod count",
+      "title": "$clustername pod count",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -717,6 +727,7 @@
         "x": 12,
         "y": 25
       },
+      "hiddenSeries": false,
       "id": 103,
       "legend": {
         "alignAsTable": true,
@@ -758,7 +769,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Namespace Count",
+      "title": "$clustername Namespace Count",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -810,8 +821,8 @@
       "scopedVars": {
         "_node": {
           "selected": true,
-          "text": "ip-10-0-129-164.us-west-2.compute.internal",
-          "value": "ip-10-0-129-164.us-west-2.compute.internal"
+          "text": "ip-10-0-142-206.us-west-2.compute.internal",
+          "value": "ip-10-0-142-206.us-west-2.compute.internal"
         }
       },
       "title": "Master : $_node",
@@ -848,6 +859,7 @@
         "x": 0,
         "y": 34
       },
+      "hiddenSeries": false,
       "id": 45,
       "legend": {
         "alignAsTable": false,
@@ -880,8 +892,8 @@
       "scopedVars": {
         "_node": {
           "selected": true,
-          "text": "ip-10-0-129-164.us-west-2.compute.internal",
-          "value": "ip-10-0-129-164.us-west-2.compute.internal"
+          "text": "ip-10-0-142-206.us-west-2.compute.internal",
+          "value": "ip-10-0-142-206.us-west-2.compute.internal"
         }
       },
       "seriesOverrides": [
@@ -1017,6 +1029,7 @@
         "x": 12,
         "y": 34
       },
+      "hiddenSeries": false,
       "id": 96,
       "legend": {
         "alignAsTable": false,
@@ -1045,8 +1058,8 @@
       "scopedVars": {
         "_node": {
           "selected": true,
-          "text": "ip-10-0-129-164.us-west-2.compute.internal",
-          "value": "ip-10-0-129-164.us-west-2.compute.internal"
+          "text": "ip-10-0-142-206.us-west-2.compute.internal",
+          "value": "ip-10-0-142-206.us-west-2.compute.internal"
         }
       },
       "seriesOverrides": [
@@ -1151,6 +1164,7 @@
         "x": 0,
         "y": 43
       },
+      "hiddenSeries": false,
       "id": 57,
       "legend": {
         "alignAsTable": true,
@@ -1181,8 +1195,8 @@
       "scopedVars": {
         "_node": {
           "selected": true,
-          "text": "ip-10-0-129-164.us-west-2.compute.internal",
-          "value": "ip-10-0-129-164.us-west-2.compute.internal"
+          "text": "ip-10-0-142-206.us-west-2.compute.internal",
+          "value": "ip-10-0-142-206.us-west-2.compute.internal"
         }
       },
       "seriesOverrides": [
@@ -1272,6 +1286,7 @@
         "x": 12,
         "y": 43
       },
+      "hiddenSeries": false,
       "id": 82,
       "legend": {
         "alignAsTable": true,
@@ -1302,8 +1317,8 @@
       "scopedVars": {
         "_node": {
           "selected": true,
-          "text": "ip-10-0-129-164.us-west-2.compute.internal",
-          "value": "ip-10-0-129-164.us-west-2.compute.internal"
+          "text": "ip-10-0-142-206.us-west-2.compute.internal",
+          "value": "ip-10-0-142-206.us-west-2.compute.internal"
         }
       },
       "seriesOverrides": [
@@ -1392,6 +1407,7 @@
         "x": 0,
         "y": 53
       },
+      "hiddenSeries": false,
       "id": 73,
       "legend": {
         "alignAsTable": true,
@@ -1421,8 +1437,8 @@
       "scopedVars": {
         "_node": {
           "selected": true,
-          "text": "ip-10-0-129-164.us-west-2.compute.internal",
-          "value": "ip-10-0-129-164.us-west-2.compute.internal"
+          "text": "ip-10-0-142-206.us-west-2.compute.internal",
+          "value": "ip-10-0-142-206.us-west-2.compute.internal"
         }
       },
       "seriesOverrides": [],
@@ -1503,6 +1519,7 @@
         "x": 12,
         "y": 53
       },
+      "hiddenSeries": false,
       "id": 97,
       "legend": {
         "alignAsTable": true,
@@ -1532,8 +1549,8 @@
       "scopedVars": {
         "_node": {
           "selected": true,
-          "text": "ip-10-0-129-164.us-west-2.compute.internal",
-          "value": "ip-10-0-129-164.us-west-2.compute.internal"
+          "text": "ip-10-0-142-206.us-west-2.compute.internal",
+          "value": "ip-10-0-142-206.us-west-2.compute.internal"
         }
       },
       "seriesOverrides": [],
@@ -1614,6 +1631,7 @@
         "x": 0,
         "y": 61
       },
+      "hiddenSeries": false,
       "id": 69,
       "legend": {
         "avg": false,
@@ -1643,8 +1661,8 @@
       "scopedVars": {
         "_node": {
           "selected": true,
-          "text": "ip-10-0-129-164.us-west-2.compute.internal",
-          "value": "ip-10-0-129-164.us-west-2.compute.internal"
+          "text": "ip-10-0-142-206.us-west-2.compute.internal",
+          "value": "ip-10-0-142-206.us-west-2.compute.internal"
         }
       },
       "seriesOverrides": [],
@@ -1716,6 +1734,7 @@
         "x": 12,
         "y": 61
       },
+      "hiddenSeries": false,
       "id": 63,
       "legend": {
         "alignAsTable": false,
@@ -1745,8 +1764,8 @@
       "scopedVars": {
         "_node": {
           "selected": true,
-          "text": "ip-10-0-129-164.us-west-2.compute.internal",
-          "value": "ip-10-0-129-164.us-west-2.compute.internal"
+          "text": "ip-10-0-142-206.us-west-2.compute.internal",
+          "value": "ip-10-0-142-206.us-west-2.compute.internal"
         }
       },
       "seriesOverrides": [],
@@ -1806,14 +1825,13 @@
     }
   ],
   "refresh": false,
-  "schemaVersion": 20,
+  "schemaVersion": 21,
   "style": "dark",
   "tags": [],
   "templating": {
     "list": [
       {
         "current": {
-          "selected": false,
           "text": "default",
           "value": "default"
         },
@@ -1832,10 +1850,8 @@
       {
         "allValue": null,
         "current": {
-          "text": "ip-10-0-129-164.us-west-2.compute.internal",
-          "value": [
-            "ip-10-0-129-164.us-west-2.compute.internal"
-          ]
+          "text": "ip-10-0-142-206.us-west-2.compute.internal",
+          "value": "ip-10-0-142-206.us-west-2.compute.internal"
         },
         "datasource": "$datasource",
         "definition": "query_result(  kube_node_role{role=\"master\"} )",
@@ -1859,6 +1875,7 @@
       {
         "allValue": null,
         "current": {
+          "selected": false,
           "text": "All",
           "value": "$__all"
         },
@@ -1939,6 +1956,7 @@
         "allValue": null,
         "current": {
           "isNone": true,
+          "selected": false,
           "text": "None",
           "value": ""
         },
@@ -1964,8 +1982,8 @@
     ]
   },
   "time": {
-    "from": "now-3d",
-    "to": "now"
+    "from": "2020-01-09T16:23:43.434Z",
+    "to": "2020-01-09T18:25:27.550Z"
   },
   "timepicker": {
     "refresh_intervals": [
@@ -1995,5 +2013,5 @@
   "timezone": "",
   "title": "OpenShift Cluster Performance Dashboard",
   "uid": null,
-  "version": 15
+  "version": 1
 }
