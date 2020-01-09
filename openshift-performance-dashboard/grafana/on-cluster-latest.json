@@ -89,7 +89,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "$clustername - Top 10 Memory usage",
+      "title": "Top 10 Memory usage",
       "tooltip": {
         "shared": true,
         "sort": 2,
@@ -187,7 +187,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "$clustername - 400/500 requests",
+      "title": "400/500 requests",
       "tooltip": {
         "shared": true,
         "sort": 2,
@@ -278,7 +278,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "$clustername - API Request Count",
+      "title": "API Request Count",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -461,7 +461,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "$clustername - Number of nodes",
+      "title": "Number of nodes",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -553,7 +553,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "$clustername Goroutines Count",
+      "title": "Goroutines Count",
       "tooltip": {
         "shared": true,
         "sort": 2,
@@ -666,7 +666,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "$clustername pod count",
+      "title": "pod count",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -758,7 +758,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "$clustername Namespace Count",
+      "title": "Namespace Count",
       "tooltip": {
         "shared": true,
         "sort": 0,
