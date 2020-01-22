@@ -12,12 +12,12 @@
 			}
 		]
 	},
-	"description": "Performance dashboards for Red Hat OpenShift",
+	"description": "Performance dashboard for Red Hat OpenShift",
 	"editable": true,
 	"gnetId": 10092,
 	"graphTooltip": 0,
-	"id": "",
-	"iteration": 1579637006939,
+	"id": null,
+	"iteration": 1579709097131,
 	"links": [],
 	"panels": [
 		{
@@ -150,7 +150,7 @@
 						"h": 8,
 						"w": 12,
 						"x": 0,
-						"y": 10
+						"y": 2
 					},
 					"hiddenSeries": false,
 					"id": 143,
@@ -183,7 +183,7 @@
 					"steppedLine": false,
 					"targets": [
 						{
-							"expr": "rate(process_cpu_seconds_total{service=\"kubelet\",job=\"kubelet\"}[5m])",
+							"expr": "sum(rate(process_cpu_seconds_total{service=\"kubelet\",job=\"kubelet\"}[5m])) by (instance) * 100",
 							"format": "time_series",
 							"intervalFactor": 1,
 							"legendFormat": "kubelet - {{instance}}",
@@ -210,7 +210,7 @@
 					},
 					"yaxes": [
 						{
-							"format": "short",
+							"format": "percent",
 							"label": null,
 							"logBase": 1,
 							"max": null,
@@ -243,7 +243,7 @@
 						"h": 8,
 						"w": 12,
 						"x": 12,
-						"y": 10
+						"y": 2
 					},
 					"hiddenSeries": false,
 					"id": 144,
@@ -276,7 +276,7 @@
 					"steppedLine": false,
 					"targets": [
 						{
-							"expr": "rate(process_cpu_seconds_total{service=\"kubelet\",job=\"crio\"}[5m])",
+							"expr": "sum(rate(process_cpu_seconds_total{service=\"kubelet\",job=\"crio\"}[5m])) by (instance) * 100",
 							"format": "time_series",
 							"intervalFactor": 1,
 							"legendFormat": "crio - {{instance}}",
@@ -303,7 +303,7 @@
 					},
 					"yaxes": [
 						{
-							"format": "short",
+							"format": "percent",
 							"label": null,
 							"logBase": 1,
 							"max": null,
@@ -336,7 +336,7 @@
 						"h": 8,
 						"w": 12,
 						"x": 0,
-						"y": 18
+						"y": 10
 					},
 					"hiddenSeries": false,
 					"id": 157,
@@ -429,7 +429,7 @@
 						"h": 8,
 						"w": 12,
 						"x": 12,
-						"y": 18
+						"y": 10
 					},
 					"hiddenSeries": false,
 					"id": 158,
@@ -963,7 +963,7 @@
 					"steppedLine": false,
 					"targets": [
 						{
-							"expr": "topk(10, container_memory_rss{namespace!=\"\"})",
+							"expr": "topk(10, container_memory_rss{namespace!=\"\",name!=\"\"})",
 							"format": "time_series",
 							"intervalFactor": 1,
 							"legendFormat": "{{namespace}} - {{name}}",
@@ -1116,7 +1116,7 @@
 					"bars": false,
 					"dashLength": 10,
 					"dashes": false,
-					"datasource": "$datasource",
+					"datasource": null,
 					"fill": 1,
 					"fillGradient": 0,
 					"gridPos": {
@@ -1124,6 +1124,216 @@
 						"w": 12,
 						"x": 0,
 						"y": 27
+					},
+					"hiddenSeries": false,
+					"id": 177,
+					"legend": {
+						"alignAsTable": true,
+						"avg": false,
+						"current": false,
+						"max": false,
+						"min": false,
+						"rightSide": true,
+						"show": true,
+						"sideWidth": 250,
+						"total": false,
+						"values": false
+					},
+					"lines": true,
+					"linewidth": 1,
+					"nullPointMode": "null",
+					"options": {
+						"dataLinks": []
+					},
+					"percentage": false,
+					"pointradius": 2,
+					"points": false,
+					"renderer": "flot",
+					"seriesOverrides": [],
+					"spaceLength": 10,
+					"stack": false,
+					"steppedLine": false,
+					"targets": [
+						{
+							"expr": "sum(rate(container_cpu_usage_seconds_total{job=\"kubelet\",service=\"kubelet\",namespace=\"openshift-ovn-kubernetes\",name=~\"k8s_POD_ovnkube-master-.*\",name!=\"\"}[5m])) by (name) * 100",
+							"legendFormat": "master - {{name}}",
+							"refId": "A"
+						},
+						{
+							"expr": "sum(rate(container_cpu_usage_seconds_total{job=\"kubelet\",service=\"kubelet\",namespace=\"openshift-ovn-kubernetes\",name=~\"k8s_northd_.*\",name!=\"\"}[5m])) by (name) * 100",
+							"legendFormat": "northd - {{name}}",
+							"refId": "B"
+						},
+						{
+							"expr": "sum(rate(container_cpu_usage_seconds_total{job=\"kubelet\",service=\"kubelet\",namespace=\"openshift-ovn-kubernetes\",name=~\"k8s_nbdb_.*\",name!=\"\"}[5m])) by (name) * 100",
+							"legendFormat": "nbdb - {{name}}",
+							"refId": "C"
+						},
+						{
+							"expr": "sum(rate(container_cpu_usage_seconds_total{job=\"kubelet\",service=\"kubelet\",namespace=\"openshift-ovn-kubernetes\",name=~\"k8s_sbdb_.*\",name!=\"\"}[5m])) by (name) * 100",
+							"legendFormat": "sbdb - {{name}}",
+							"refId": "D"
+						}
+					],
+					"thresholds": [],
+					"timeFrom": null,
+					"timeRegions": [],
+					"timeShift": null,
+					"title": "OVN - Master utilization",
+					"tooltip": {
+						"shared": true,
+						"sort": 2,
+						"value_type": "individual"
+					},
+					"type": "graph",
+					"xaxis": {
+						"buckets": null,
+						"mode": "time",
+						"name": null,
+						"show": true,
+						"values": []
+					},
+					"yaxes": [
+						{
+							"format": "percent",
+							"label": null,
+							"logBase": 1,
+							"max": null,
+							"min": null,
+							"show": true
+						},
+						{
+							"format": "short",
+							"label": null,
+							"logBase": 1,
+							"max": null,
+							"min": null,
+							"show": true
+						}
+					],
+					"yaxis": {
+						"align": false,
+						"alignLevel": null
+					}
+				},
+				{
+					"aliasColors": {},
+					"bars": false,
+					"dashLength": 10,
+					"dashes": false,
+					"datasource": null,
+					"fill": 1,
+					"fillGradient": 0,
+					"gridPos": {
+						"h": 8,
+						"w": 12,
+						"x": 12,
+						"y": 27
+					},
+					"hiddenSeries": false,
+					"id": 178,
+					"legend": {
+						"alignAsTable": true,
+						"avg": false,
+						"current": false,
+						"max": false,
+						"min": false,
+						"rightSide": true,
+						"show": true,
+						"sideWidth": 250,
+						"total": false,
+						"values": false
+					},
+					"lines": true,
+					"linewidth": 1,
+					"nullPointMode": "null",
+					"options": {
+						"dataLinks": []
+					},
+					"percentage": false,
+					"pointradius": 2,
+					"points": false,
+					"renderer": "flot",
+					"seriesOverrides": [],
+					"spaceLength": 10,
+					"stack": false,
+					"steppedLine": false,
+					"targets": [
+						{
+							"expr": "container_memory_rss{name=~\"k8s_POD_ovnkube-master-.*\"}",
+							"legendFormat": "master - {{name}}",
+							"refId": "A"
+						},
+						{
+							"expr": "container_memory_rss{name=~\"k8s_northd_.*\"}",
+							"legendFormat": "northd - {{name}}",
+							"refId": "B"
+						},
+						{
+							"expr": "container_memory_rss{name=~\"k8s_nbdb_.*\"}",
+							"legendFormat": "nbdb - {{name}}",
+							"refId": "C"
+						},
+						{
+							"expr": "container_memory_rss{name=~\"k8s_sbdb_.*\"}",
+							"legendFormat": "sbdb - {{name}}",
+							"refId": "D"
+						}
+					],
+					"thresholds": [],
+					"timeFrom": null,
+					"timeRegions": [],
+					"timeShift": null,
+					"title": "OVN - Master utilization",
+					"tooltip": {
+						"shared": true,
+						"sort": 2,
+						"value_type": "individual"
+					},
+					"type": "graph",
+					"xaxis": {
+						"buckets": null,
+						"mode": "time",
+						"name": null,
+						"show": true,
+						"values": []
+					},
+					"yaxes": [
+						{
+							"format": "Bps",
+							"label": null,
+							"logBase": 1,
+							"max": null,
+							"min": null,
+							"show": true
+						},
+						{
+							"format": "short",
+							"label": null,
+							"logBase": 1,
+							"max": null,
+							"min": null,
+							"show": false
+						}
+					],
+					"yaxis": {
+						"align": false,
+						"alignLevel": null
+					}
+				},
+				{
+					"aliasColors": {},
+					"bars": false,
+					"dashLength": 10,
+					"dashes": false,
+					"datasource": "$datasource",
+					"fill": 1,
+					"fillGradient": 0,
+					"gridPos": {
+						"h": 8,
+						"w": 12,
+						"x": 0,
+						"y": 35
 					},
 					"hiddenSeries": false,
 					"id": 116,
@@ -1216,7 +1426,7 @@
 						"h": 8,
 						"w": 12,
 						"x": 12,
-						"y": 27
+						"y": 35
 					},
 					"hiddenSeries": false,
 					"id": 114,
@@ -1307,9 +1517,9 @@
 					"fillGradient": 0,
 					"gridPos": {
 						"h": 8,
-						"w": 12,
+						"w": 24,
 						"x": 0,
-						"y": 35
+						"y": 43
 					},
 					"hiddenSeries": false,
 					"id": 142,
@@ -1342,7 +1552,7 @@
 					"steppedLine": false,
 					"targets": [
 						{
-							"expr": "sort_desc(rate(apiserver_request_count{resource=\"pods\"}[3m]))",
+							"expr": "sum(rate(apiserver_request_count{}[5m])) by (client,verb)",
 							"format": "time_series",
 							"intervalFactor": 1,
 							"legendFormat": "{{client}} - {{verb}}",
@@ -1434,7 +1644,7 @@
 						"h": 9,
 						"w": 12,
 						"x": 0,
-						"y": 3
+						"y": 4
 					},
 					"hiddenSeries": false,
 					"id": 45,
@@ -1500,7 +1710,7 @@
 					"steppedLine": false,
 					"targets": [
 						{
-							"expr": "sum by (instance)(rate(node_cpu_seconds_total{mode=\"system\",instance=~\"$_node\",job=~\".*\",clustername=~\"$clustername\"}[1m])) * 100",
+							"expr": "sum by (instance)(rate(node_cpu_seconds_total{mode=\"system\",instance=~\"$_node\",job=~\".*\",clustername=~\"$clustername\"}[5m])) * 100",
 							"format": "time_series",
 							"hide": false,
 							"intervalFactor": 2,
@@ -1509,7 +1719,7 @@
 							"step": 240
 						},
 						{
-							"expr": "sum by (instance)(rate(node_cpu_seconds_total{mode='user',instance=~\"$_node\",job=~\".*\",clustername=~\"$clustername\"}[1m])) * 100",
+							"expr": "sum by (instance)(rate(node_cpu_seconds_total{mode='user',instance=~\"$_node\",job=~\".*\",clustername=~\"$clustername\"}[5m])) * 100",
 							"format": "time_series",
 							"hide": false,
 							"intervalFactor": 2,
@@ -1518,7 +1728,7 @@
 							"step": 240
 						},
 						{
-							"expr": "sum by (instance)(rate(node_cpu_seconds_total{mode='iowait',instance=~\"$_node\",job=~\".*\",clustername=~\"$clustername\"}[1m])) * 100",
+							"expr": "sum by (instance)(rate(node_cpu_seconds_total{mode='iowait',instance=~\"$_node\",job=~\".*\",clustername=~\"$clustername\"}[5m])) * 100",
 							"format": "time_series",
 							"intervalFactor": 2,
 							"legendFormat": "Busy Iowait",
@@ -1526,7 +1736,7 @@
 							"step": 240
 						},
 						{
-							"expr": "sum by (instance)(rate(node_cpu_seconds_total{mode=~\".*irq\",instance=~\"$_node\",job=~\".*\",clustername=~\"$clustername\"}[1m])) * 100",
+							"expr": "sum by (instance)(rate(node_cpu_seconds_total{mode=~\".*irq\",instance=~\"$_node\",job=~\".*\",clustername=~\"$clustername\"}[5m])) * 100",
 							"format": "time_series",
 							"intervalFactor": 2,
 							"legendFormat": "Busy IRQs",
@@ -1534,7 +1744,7 @@
 							"step": 240
 						},
 						{
-							"expr": "sum (rate(node_cpu_seconds_total{mode!='idle',mode!='user',mode!='system',mode!='iowait',mode!='irq',mode!='softirq',instance=~\"$_node\",job=~\".*\",clustername=~\"$clustername\"}[1m])) * 100",
+							"expr": "sum (rate(node_cpu_seconds_total{mode!='idle',mode!='user',mode!='system',mode!='iowait',mode!='irq',mode!='softirq',instance=~\"$_node\",job=~\".*\",clustername=~\"$clustername\"}[5m])) * 100",
 							"format": "time_series",
 							"intervalFactor": 2,
 							"legendFormat": "Busy Other",
@@ -1542,7 +1752,7 @@
 							"step": 240
 						},
 						{
-							"expr": "sum by (mode)(rate(node_cpu_seconds_total{mode='idle',instance=~\"$_node\",job=~\".*\",clustername=~\"$clustername\"}[1m])) * 100",
+							"expr": "sum by (mode)(rate(node_cpu_seconds_total{mode='idle',instance=~\"$_node\",job=~\".*\",clustername=~\"$clustername\"}[5m])) * 100",
 							"format": "time_series",
 							"intervalFactor": 2,
 							"legendFormat": "Idle",
@@ -1604,7 +1814,7 @@
 						"h": 9,
 						"w": 12,
 						"x": 12,
-						"y": 3
+						"y": 4
 					},
 					"hiddenSeries": false,
 					"id": 150,
@@ -1738,7 +1948,7 @@
 						"h": 10,
 						"w": 12,
 						"x": 0,
-						"y": 12
+						"y": 13
 					},
 					"hiddenSeries": false,
 					"id": 57,
@@ -1789,7 +1999,7 @@
 					"steppedLine": false,
 					"targets": [
 						{
-							"expr": "irate(node_disk_read_bytes_total{device=~\"$block_device\",instance=~\"$_node\",clustername=~\"$clustername\"}[1m])",
+							"expr": "rate(node_disk_read_bytes_total{device=~\"$block_device\",instance=~\"$_node\",clustername=~\"$clustername\"}[5m])",
 							"format": "time_series",
 							"hide": false,
 							"intervalFactor": 1,
@@ -1797,7 +2007,7 @@
 							"refId": "C"
 						},
 						{
-							"expr": "irate(node_disk_written_bytes_total{device=~\"$block_device\",instance=~\"$_node\",clustername=~\"$clustername\"}[1m])",
+							"expr": "rate(node_disk_written_bytes_total{device=~\"$block_device\",instance=~\"$_node\",clustername=~\"$clustername\"}[5m])",
 							"format": "time_series",
 							"hide": false,
 							"intervalFactor": 1,
@@ -1860,7 +2070,7 @@
 						"h": 10,
 						"w": 12,
 						"x": 12,
-						"y": 12
+						"y": 13
 					},
 					"hiddenSeries": false,
 					"id": 152,
@@ -1910,7 +2120,7 @@
 					"steppedLine": false,
 					"targets": [
 						{
-							"expr": "irate(node_disk_reads_completed_total{device=~\"$block_device\",instance=~\"$_node\",clustername=~\"$clustername\",}[1m])",
+							"expr": "rate(node_disk_reads_completed_total{device=~\"$block_device\",instance=~\"$_node\",clustername=~\"$clustername\",}[5m])",
 							"format": "time_series",
 							"hide": false,
 							"intervalFactor": 1,
@@ -1918,7 +2128,7 @@
 							"refId": "C"
 						},
 						{
-							"expr": "irate(node_disk_writes_completed_total{device=~\"$block_device\",instance=~\"$_node\",clustername=~\"$clustername\"}[1m])",
+							"expr": "rate(node_disk_writes_completed_total{device=~\"$block_device\",instance=~\"$_node\",clustername=~\"$clustername\"}[5m])",
 							"format": "time_series",
 							"hide": false,
 							"intervalFactor": 1,
@@ -1980,7 +2190,7 @@
 						"h": 8,
 						"w": 12,
 						"x": 0,
-						"y": 22
+						"y": 23
 					},
 					"hiddenSeries": false,
 					"id": 73,
@@ -2022,7 +2232,7 @@
 					"steppedLine": false,
 					"targets": [
 						{
-							"expr": "irate(node_network_receive_bytes_total{instance=~\"$_node\",device=~\"$net_device\",clustername=~\"$clustername\"}[1m]) * 8",
+							"expr": "rate(node_network_receive_bytes_total{instance=~\"$_node\",device=~\"$net_device\",clustername=~\"$clustername\"}[5m]) * 8",
 							"format": "time_series",
 							"hide": false,
 							"intervalFactor": 1,
@@ -2030,7 +2240,7 @@
 							"refId": "A"
 						},
 						{
-							"expr": "irate(node_network_transmit_bytes_total{instance=~\"$_node\",device=~\"$net_device\",clustername=~\"$clustername\"}[1m]) * 8",
+							"expr": "rate(node_network_transmit_bytes_total{instance=~\"$_node\",device=~\"$net_device\",clustername=~\"$clustername\"}[5m]) * 8",
 							"format": "time_series",
 							"hide": false,
 							"intervalFactor": 1,
@@ -2092,7 +2302,7 @@
 						"h": 8,
 						"w": 12,
 						"x": 12,
-						"y": 22
+						"y": 23
 					},
 					"hiddenSeries": false,
 					"id": 154,
@@ -2133,7 +2343,7 @@
 					"steppedLine": false,
 					"targets": [
 						{
-							"expr": "irate(node_network_receive_packets_total{instance=~\"$_node\",device=~\"$net_device\",clustername=~\"$clustername\"}[1m]) * 8",
+							"expr": "rate(node_network_receive_packets_total{instance=~\"$_node\",device=~\"$net_device\",clustername=~\"$clustername\"}[5m]) * 8",
 							"format": "time_series",
 							"hide": false,
 							"intervalFactor": 1,
@@ -2141,7 +2351,7 @@
 							"refId": "A"
 						},
 						{
-							"expr": "irate(node_network_transmit_packets_total{instance=~\"$_node\",device=~\"$net_device\",clustername=~\"$clustername\"}[1m]) * 8",
+							"expr": "rate(node_network_transmit_packets_total{instance=~\"$_node\",device=~\"$net_device\",clustername=~\"$clustername\"}[5m]) * 8",
 							"format": "time_series",
 							"hide": false,
 							"intervalFactor": 1,
@@ -2203,7 +2413,7 @@
 						"h": 8,
 						"w": 12,
 						"x": 0,
-						"y": 30
+						"y": 31
 					},
 					"hiddenSeries": false,
 					"id": 69,
@@ -2245,7 +2455,7 @@
 					"steppedLine": false,
 					"targets": [
 						{
-							"expr": "irate(container_cpu_usage_seconds_total{name!=\"\",node=~\"$_node\",clustername=~\"$clustername\",namespace!=\"\",namespace=~\"$namespace\"}[5m])",
+							"expr": "sum(rate(container_cpu_usage_seconds_total{name!=\"\",node=~\"$_node\",clustername=~\"$clustername\",namespace!=\"\",namespace=~\"$namespace\"}[5m])) by (namespace,name,service) * 100",
 							"format": "time_series",
 							"intervalFactor": 1,
 							"legendFormat": "{{ namespace }} - {{name}} - {{ service }}",
@@ -2273,7 +2483,7 @@
 					},
 					"yaxes": [
 						{
-							"format": "short",
+							"format": "percent",
 							"label": null,
 							"logBase": 1,
 							"max": null,
@@ -2306,7 +2516,7 @@
 						"h": 8,
 						"w": 12,
 						"x": 12,
-						"y": 30
+						"y": 31
 					},
 					"hiddenSeries": false,
 					"id": 156,
@@ -2347,7 +2557,7 @@
 					"steppedLine": false,
 					"targets": [
 						{
-							"expr": "irate(container_memory_rss{name!=\"\",node=~\"$_node\",clustername=~\"$clustername\",namespace!=\"\",namespace=~\"$namespace\"}[5m])",
+							"expr": "container_memory_rss{name!=\"\",node=~\"$_node\",clustername=~\"$clustername\",namespace!=\"\",namespace=~\"$namespace\"}",
 							"format": "time_series",
 							"intervalFactor": 1,
 							"legendFormat": "{{namespace}} - {{name}}",
@@ -2448,7 +2658,7 @@
 						"h": 9,
 						"w": 12,
 						"x": 0,
-						"y": 5
+						"y": 20
 					},
 					"hiddenSeries": false,
 					"id": 168,
@@ -2506,7 +2716,7 @@
 					"steppedLine": false,
 					"targets": [
 						{
-							"expr": "sum by (instance)(rate(node_cpu_seconds_total{mode=\"system\",instance=~\"$_infra_node\",job=~\".*\",clustername=~\"$clustername\"}[1m])) * 100",
+							"expr": "sum by (instance)(rate(node_cpu_seconds_total{mode=\"system\",instance=~\"$_infra_node\",job=~\".*\",clustername=~\"$clustername\"}[5m])) * 100",
 							"format": "time_series",
 							"hide": false,
 							"intervalFactor": 2,
@@ -2515,7 +2725,7 @@
 							"step": 240
 						},
 						{
-							"expr": "sum by (instance)(rate(node_cpu_seconds_total{mode='user',instance=~\"$_inra_node\",job=~\".*\",clustername=~\"$clustername\"}[1m])) * 100",
+							"expr": "sum by (instance)(rate(node_cpu_seconds_total{mode='user',instance=~\"$_inra_node\",job=~\".*\",clustername=~\"$clustername\"}[5m])) * 100",
 							"format": "time_series",
 							"hide": false,
 							"intervalFactor": 2,
@@ -2524,7 +2734,7 @@
 							"step": 240
 						},
 						{
-							"expr": "sum by (instance)(rate(node_cpu_seconds_total{mode='iowait',instance=~\"$_infra_node\",job=~\".*\",clustername=~\"$clustername\"}[1m])) * 100",
+							"expr": "sum by (instance)(rate(node_cpu_seconds_total{mode='iowait',instance=~\"$_infra_node\",job=~\".*\",clustername=~\"$clustername\"}[5m])) * 100",
 							"format": "time_series",
 							"intervalFactor": 2,
 							"legendFormat": "Busy Iowait",
@@ -2532,7 +2742,7 @@
 							"step": 240
 						},
 						{
-							"expr": "sum by (instance)(rate(node_cpu_seconds_total{mode=~\".*irq\",instance=~\"$_infra_node\",job=~\".*\",clustername=~\"$clustername\"}[1m])) * 100",
+							"expr": "sum by (instance)(rate(node_cpu_seconds_total{mode=~\".*irq\",instance=~\"$_infra_node\",job=~\".*\",clustername=~\"$clustername\"}[5m])) * 100",
 							"format": "time_series",
 							"intervalFactor": 2,
 							"legendFormat": "Busy IRQs",
@@ -2540,7 +2750,7 @@
 							"step": 240
 						},
 						{
-							"expr": "sum (rate(node_cpu_seconds_total{mode!='idle',mode!='user',mode!='system',mode!='iowait',mode!='irq',mode!='softirq',instance=~\"$_infra_node\",job=~\".*\",clustername=~\"$clustername\"}[1m])) * 100",
+							"expr": "sum (rate(node_cpu_seconds_total{mode!='idle',mode!='user',mode!='system',mode!='iowait',mode!='irq',mode!='softirq',instance=~\"$_infra_node\",job=~\".*\",clustername=~\"$clustername\"}[5m])) * 100",
 							"format": "time_series",
 							"intervalFactor": 2,
 							"legendFormat": "Busy Other",
@@ -2548,7 +2758,7 @@
 							"step": 240
 						},
 						{
-							"expr": "sum by (mode)(rate(node_cpu_seconds_total{mode='idle',instance=~\"$_infra_node\",job=~\".*\",clustername=~\"$clustername\"}[1m])) * 100",
+							"expr": "sum by (mode)(rate(node_cpu_seconds_total{mode='idle',instance=~\"$_infra_node\",job=~\".*\",clustername=~\"$clustername\"}[5m])) * 100",
 							"format": "time_series",
 							"intervalFactor": 2,
 							"legendFormat": "Idle",
@@ -2610,7 +2820,7 @@
 						"h": 9,
 						"w": 12,
 						"x": 12,
-						"y": 5
+						"y": 20
 					},
 					"hiddenSeries": false,
 					"id": 96,
@@ -2738,7 +2948,7 @@
 						"h": 10,
 						"w": 12,
 						"x": 0,
-						"y": 14
+						"y": 29
 					},
 					"hiddenSeries": false,
 					"id": 170,
@@ -2781,7 +2991,7 @@
 					"steppedLine": false,
 					"targets": [
 						{
-							"expr": "irate(node_disk_read_bytes_total{device=~\"$block_device\",instance=~\"$_infra_node\",clustername=~\"$clustername\"}[1m])",
+							"expr": "rate(node_disk_read_bytes_total{device=~\"$block_device\",instance=~\"$_infra_node\",clustername=~\"$clustername\"}[5m])",
 							"format": "time_series",
 							"hide": false,
 							"intervalFactor": 1,
@@ -2789,7 +2999,7 @@
 							"refId": "C"
 						},
 						{
-							"expr": "irate(node_disk_written_bytes_total{device=~\"$block_device\",instance=~\"$_infra_node\",clustername=~\"$clustername\"}[1m])",
+							"expr": "rate(node_disk_written_bytes_total{device=~\"$block_device\",instance=~\"$_infra_node\",clustername=~\"$clustername\"}[5m])",
 							"format": "time_series",
 							"hide": false,
 							"intervalFactor": 1,
@@ -2852,7 +3062,7 @@
 						"h": 10,
 						"w": 12,
 						"x": 12,
-						"y": 14
+						"y": 29
 					},
 					"hiddenSeries": false,
 					"id": 82,
@@ -2896,7 +3106,7 @@
 					"steppedLine": false,
 					"targets": [
 						{
-							"expr": "irate(node_disk_reads_completed_total{device=~\"$block_device\",instance=~\"$_infra_node\",clustername=~\"$clustername\",}[1m])",
+							"expr": "rate(node_disk_reads_completed_total{device=~\"$block_device\",instance=~\"$_infra_node\",clustername=~\"$clustername\"}[5m])",
 							"format": "time_series",
 							"hide": false,
 							"intervalFactor": 1,
@@ -2904,7 +3114,7 @@
 							"refId": "C"
 						},
 						{
-							"expr": "irate(node_disk_writes_completed_total{device=~\"$block_device\",instance=~\"$_infra_node\",clustername=~\"$clustername\"}[1m])",
+							"expr": "rate(node_disk_writes_completed_total{device=~\"$block_device\",instance=~\"$_infra_node\",clustername=~\"$clustername\"}[5m])",
 							"format": "time_series",
 							"hide": false,
 							"intervalFactor": 1,
@@ -2966,7 +3176,7 @@
 						"h": 8,
 						"w": 12,
 						"x": 0,
-						"y": 24
+						"y": 39
 					},
 					"hiddenSeries": false,
 					"id": 172,
@@ -3000,7 +3210,7 @@
 					"steppedLine": false,
 					"targets": [
 						{
-							"expr": "irate(node_network_receive_bytes_total{instance=~\"$_infra_node\",device=~\"$net_device\",clustername=~\"$clustername\"}[1m]) * 8",
+							"expr": "rate(node_network_receive_bytes_total{instance=~\"$_infra_node\",device=~\"$net_device\",clustername=~\"$clustername\"}[5m]) * 8",
 							"format": "time_series",
 							"hide": false,
 							"intervalFactor": 1,
@@ -3008,7 +3218,7 @@
 							"refId": "A"
 						},
 						{
-							"expr": "irate(node_network_transmit_bytes_total{instance=~\"$_infra_node\",device=~\"$net_device\",clustername=~\"$clustername\"}[1m]) * 8",
+							"expr": "rate(node_network_transmit_bytes_total{instance=~\"$_infra_node\",device=~\"$net_device\",clustername=~\"$clustername\"}[5m]) * 8",
 							"format": "time_series",
 							"hide": false,
 							"intervalFactor": 1,
@@ -3070,7 +3280,7 @@
 						"h": 8,
 						"w": 12,
 						"x": 12,
-						"y": 24
+						"y": 39
 					},
 					"hiddenSeries": false,
 					"id": 97,
@@ -3105,7 +3315,7 @@
 					"steppedLine": false,
 					"targets": [
 						{
-							"expr": "irate(node_network_receive_packets_total{instance=~\"$_infra_node\",device=~\"$net_device\",clustername=~\"$clustername\"}[1m]) * 8",
+							"expr": "rate(node_network_receive_packets_total{instance=~\"$_infra_node\",device=~\"$net_device\",clustername=~\"$clustername\"}[5m]) * 8",
 							"format": "time_series",
 							"hide": false,
 							"intervalFactor": 1,
@@ -3113,7 +3323,7 @@
 							"refId": "A"
 						},
 						{
-							"expr": "irate(node_network_transmit_packets_total{instance=~\"$_infra_node\",device=~\"$net_device\",clustername=~\"$clustername\"}[1m]) * 8",
+							"expr": "rate(node_network_transmit_packets_total{instance=~\"$_infra_node\",device=~\"$net_device\",clustername=~\"$clustername\"}[5m]) * 8",
 							"format": "time_series",
 							"hide": false,
 							"intervalFactor": 1,
@@ -3175,7 +3385,7 @@
 						"h": 8,
 						"w": 12,
 						"x": 0,
-						"y": 32
+						"y": 47
 					},
 					"hiddenSeries": false,
 					"id": 174,
@@ -3209,7 +3419,7 @@
 					"steppedLine": false,
 					"targets": [
 						{
-							"expr": "irate(container_cpu_usage_seconds_total{name!=\"\",node=~\"$_infra_node\",clustername=~\"$clustername\",namespace!=\"\",namespace=~\"$namespace\"}[5m])",
+							"expr": "sum(rate(container_cpu_usage_seconds_total{name!=\"\",node=~\"$_infra_node\",clustername=~\"$clustername\",namespace!=\"\",namespace=~\"$namespace\"}[5m])) by (namespace, name, service ) * 100",
 							"format": "time_series",
 							"intervalFactor": 1,
 							"legendFormat": "{{ namespace }} - {{name}} - {{ service }}",
@@ -3237,7 +3447,7 @@
 					},
 					"yaxes": [
 						{
-							"format": "short",
+							"format": "percent",
 							"label": null,
 							"logBase": 1,
 							"max": null,
@@ -3270,7 +3480,7 @@
 						"h": 8,
 						"w": 12,
 						"x": 12,
-						"y": 32
+						"y": 47
 					},
 					"hiddenSeries": false,
 					"id": 63,
@@ -3381,7 +3591,7 @@
 						"h": 9,
 						"w": 24,
 						"x": 0,
-						"y": 41
+						"y": 27
 					},
 					"hiddenSeries": false,
 					"id": 160,
@@ -3492,7 +3702,7 @@
 						"h": 9,
 						"w": 12,
 						"x": 0,
-						"y": 50
+						"y": 36
 					},
 					"hiddenSeries": false,
 					"id": 149,
@@ -3557,7 +3767,7 @@
 					"steppedLine": false,
 					"targets": [
 						{
-							"expr": "sum by (instance)(rate(node_cpu_seconds_total{mode=\"system\",instance=~\"$_worker_node\",job=~\".*\",clustername=~\"$clustername\"}[1m])) * 100",
+							"expr": "sum by (instance)(rate(node_cpu_seconds_total{mode=\"system\",instance=~\"$_worker_node\",job=~\".*\",clustername=~\"$clustername\"}[5m])) * 100",
 							"format": "time_series",
 							"hide": false,
 							"intervalFactor": 2,
@@ -3566,7 +3776,7 @@
 							"step": 240
 						},
 						{
-							"expr": "sum by (instance)(rate(node_cpu_seconds_total{mode='user',instance=~\"$_worker_node\",job=~\".*\",clustername=~\"$clustername\"}[1m])) * 100",
+							"expr": "sum by (instance)(rate(node_cpu_seconds_total{mode='user',instance=~\"$_worker_node\",job=~\".*\",clustername=~\"$clustername\"}[5m])) * 100",
 							"format": "time_series",
 							"hide": false,
 							"intervalFactor": 2,
@@ -3575,7 +3785,7 @@
 							"step": 240
 						},
 						{
-							"expr": "sum by (instance)(rate(node_cpu_seconds_total{mode='iowait',instance=~\"$_worker_node\",job=~\".*\",clustername=~\"$clustername\"}[1m])) * 100",
+							"expr": "sum by (instance)(rate(node_cpu_seconds_total{mode='iowait',instance=~\"$_worker_node\",job=~\".*\",clustername=~\"$clustername\"}[5m])) * 100",
 							"format": "time_series",
 							"intervalFactor": 2,
 							"legendFormat": "Busy Iowait",
@@ -3583,7 +3793,7 @@
 							"step": 240
 						},
 						{
-							"expr": "sum by (instance)(rate(node_cpu_seconds_total{mode=~\".*irq\",instance=~\"$_worker_node\",job=~\".*\",clustername=~\"$clustername\"}[1m])) * 100",
+							"expr": "sum by (instance)(rate(node_cpu_seconds_total{mode=~\".*irq\",instance=~\"$_worker_node\",job=~\".*\",clustername=~\"$clustername\"}[5m])) * 100",
 							"format": "time_series",
 							"intervalFactor": 2,
 							"legendFormat": "Busy IRQs",
@@ -3591,7 +3801,7 @@
 							"step": 240
 						},
 						{
-							"expr": "sum (rate(node_cpu_seconds_total{mode!='idle',mode!='user',mode!='system',mode!='iowait',mode!='irq',mode!='softirq',instance=~\"$_worker_node\",job=~\".*\",clustername=~\"$clustername\"}[1m])) * 100",
+							"expr": "sum (rate(node_cpu_seconds_total{mode!='idle',mode!='user',mode!='system',mode!='iowait',mode!='irq',mode!='softirq',instance=~\"$_worker_node\",job=~\".*\",clustername=~\"$clustername\"}[5m])) * 100",
 							"format": "time_series",
 							"intervalFactor": 2,
 							"legendFormat": "Busy Other",
@@ -3599,7 +3809,7 @@
 							"step": 240
 						},
 						{
-							"expr": "sum by (mode)(rate(node_cpu_seconds_total{mode='idle',instance=~\"$_worker_node\",job=~\".*\",clustername=~\"$clustername\"}[1m])) * 100",
+							"expr": "sum by (mode)(rate(node_cpu_seconds_total{mode='idle',instance=~\"$_worker_node\",job=~\".*\",clustername=~\"$clustername\"}[5m])) * 100",
 							"format": "time_series",
 							"intervalFactor": 2,
 							"legendFormat": "Idle",
@@ -3661,7 +3871,7 @@
 						"h": 9,
 						"w": 12,
 						"x": 12,
-						"y": 50
+						"y": 36
 					},
 					"hiddenSeries": false,
 					"id": 169,
@@ -3795,7 +4005,7 @@
 						"h": 10,
 						"w": 12,
 						"x": 0,
-						"y": 59
+						"y": 45
 					},
 					"hiddenSeries": false,
 					"id": 151,
@@ -3845,7 +4055,7 @@
 					"steppedLine": false,
 					"targets": [
 						{
-							"expr": "irate(node_disk_read_bytes_total{device=~\"$block_device\",instance=~\"$_worker_node\",clustername=~\"$clustername\"}[1m])",
+							"expr": "rate(node_disk_read_bytes_total{device=~\"$block_device\",instance=~\"$_worker_node\",clustername=~\"$clustername\"}[5m])",
 							"format": "time_series",
 							"hide": false,
 							"intervalFactor": 1,
@@ -3853,7 +4063,7 @@
 							"refId": "C"
 						},
 						{
-							"expr": "irate(node_disk_written_bytes_total{device=~\"$block_device\",instance=~\"$_worker_node\",clustername=~\"$clustername\"}[1m])",
+							"expr": "rate(node_disk_written_bytes_total{device=~\"$block_device\",instance=~\"$_worker_node\",clustername=~\"$clustername\"}[5m])",
 							"format": "time_series",
 							"hide": false,
 							"intervalFactor": 1,
@@ -3916,7 +4126,7 @@
 						"h": 10,
 						"w": 12,
 						"x": 12,
-						"y": 59
+						"y": 45
 					},
 					"hiddenSeries": false,
 					"id": 171,
@@ -3966,7 +4176,7 @@
 					"steppedLine": false,
 					"targets": [
 						{
-							"expr": "irate(node_disk_reads_completed_total{device=~\"$block_device\",instance=~\"$_worker_node\",clustername=~\"$clustername\",}[1m])",
+							"expr": "rate(node_disk_reads_completed_total{device=~\"$block_device\",instance=~\"$_worker_node\",clustername=~\"$clustername\",}[5m])",
 							"format": "time_series",
 							"hide": false,
 							"intervalFactor": 1,
@@ -3974,7 +4184,7 @@
 							"refId": "C"
 						},
 						{
-							"expr": "irate(node_disk_writes_completed_total{device=~\"$block_device\",instance=~\"$_worker_node\",clustername=~\"$clustername\"}[1m])",
+							"expr": "rate(node_disk_writes_completed_total{device=~\"$block_device\",instance=~\"$_worker_node\",clustername=~\"$clustername\"}[5m])",
 							"format": "time_series",
 							"hide": false,
 							"intervalFactor": 1,
@@ -4036,7 +4246,7 @@
 						"h": 8,
 						"w": 12,
 						"x": 0,
-						"y": 69
+						"y": 55
 					},
 					"hiddenSeries": false,
 					"id": 153,
@@ -4077,7 +4287,7 @@
 					"steppedLine": false,
 					"targets": [
 						{
-							"expr": "irate(node_network_receive_bytes_total{instance=~\"$_worker_node\",device=~\"$net_device\",clustername=~\"$clustername\"}[1m]) * 8",
+							"expr": "rate(node_network_receive_bytes_total{instance=~\"$_worker_node\",device=~\"$net_device\",clustername=~\"$clustername\"}[5m]) * 8",
 							"format": "time_series",
 							"hide": false,
 							"intervalFactor": 1,
@@ -4085,7 +4295,7 @@
 							"refId": "A"
 						},
 						{
-							"expr": "irate(node_network_transmit_bytes_total{instance=~\"$_worker_node\",device=~\"$net_device\",clustername=~\"$clustername\"}[1m]) * 8",
+							"expr": "rate(node_network_transmit_bytes_total{instance=~\"$_worker_node\",device=~\"$net_device\",clustername=~\"$clustername\"}[5m]) * 8",
 							"format": "time_series",
 							"hide": false,
 							"intervalFactor": 1,
@@ -4147,7 +4357,7 @@
 						"h": 8,
 						"w": 12,
 						"x": 12,
-						"y": 69
+						"y": 55
 					},
 					"hiddenSeries": false,
 					"id": 173,
@@ -4188,7 +4398,7 @@
 					"steppedLine": false,
 					"targets": [
 						{
-							"expr": "irate(node_network_receive_packets_total{instance=~\"$_worker_node\",device=~\"$net_device\",clustername=~\"$clustername\"}[1m]) * 8",
+							"expr": "rate(node_network_receive_packets_total{instance=~\"$_worker_node\",device=~\"$net_device\",clustername=~\"$clustername\"}[5m]) * 8",
 							"format": "time_series",
 							"hide": false,
 							"intervalFactor": 1,
@@ -4196,7 +4406,7 @@
 							"refId": "A"
 						},
 						{
-							"expr": "irate(node_network_transmit_packets_total{instance=~\"$_worker_node\",device=~\"$net_device\",clustername=~\"$clustername\"}[1m]) * 8",
+							"expr": "rate(node_network_transmit_packets_total{instance=~\"$_worker_node\",device=~\"$net_device\",clustername=~\"$clustername\"}[5m]) * 8",
 							"format": "time_series",
 							"hide": false,
 							"intervalFactor": 1,
@@ -4258,7 +4468,7 @@
 						"h": 8,
 						"w": 12,
 						"x": 0,
-						"y": 77
+						"y": 63
 					},
 					"hiddenSeries": false,
 					"id": 155,
@@ -4299,7 +4509,7 @@
 					"steppedLine": false,
 					"targets": [
 						{
-							"expr": "irate(container_cpu_usage_seconds_total{name!=\"\",node=~\"$_worker_node\",clustername=~\"$clustername\",namespace!=\"\",namespace=~\"$namespace\"}[5m])",
+							"expr": "sum(rate(container_cpu_usage_seconds_total{name!=\"\",node=~\"$_worker_node\",clustername=~\"$clustername\",namespace!=\"\",namespace=~\"$namespace\"}[5m])) by (namespace, name, service) * 100",
 							"format": "time_series",
 							"intervalFactor": 1,
 							"legendFormat": "{{ namespace }} - {{name}} - {{ service }}",
@@ -4327,7 +4537,7 @@
 					},
 					"yaxes": [
 						{
-							"format": "short",
+							"format": "percent",
 							"label": null,
 							"logBase": 1,
 							"max": null,
@@ -4360,7 +4570,7 @@
 						"h": 8,
 						"w": 12,
 						"x": 12,
-						"y": 77
+						"y": 63
 					},
 					"hiddenSeries": false,
 					"id": 175,
@@ -4463,7 +4673,7 @@
 			"type": "row"
 		}
 	],
-	"refresh": "",
+	"refresh": "10s",
 	"schemaVersion": 22,
 	"style": "dark",
 	"tags": [],
@@ -4471,6 +4681,7 @@
 		"list": [
 			{
 				"current": {
+					"selected": true,
 					"text": "default",
 					"value": "default"
 				},
@@ -4489,9 +4700,10 @@
 			{
 				"allValue": null,
 				"current": {
-					"selected": false,
 					"text": "ip-10-0-132-167.us-west-2.compute.internal",
-					"value": "ip-10-0-132-167.us-west-2.compute.internal"
+					"value": [
+						"ip-10-0-132-167.us-west-2.compute.internal"
+					]
 				},
 				"datasource": "$datasource",
 				"definition": "query_result(  kube_node_role{role=\"master\"} )",
@@ -4702,6 +4914,6 @@
 	},
 	"timezone": "",
 	"title": "OpenShift Cluster Performance Dashboard",
-	"uid": "",
-	"version": "4"
+	"uid": null,
+	"version": 13
 }
