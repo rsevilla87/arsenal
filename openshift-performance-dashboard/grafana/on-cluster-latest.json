@@ -12,16 +12,16 @@
 			}
 		]
 	},
-	"description": "Performance dashboard for Red Hat OpenShift",
+	"description": "Performance dashboards for Red Hat OpenShift",
 	"editable": true,
 	"gnetId": 10092,
 	"graphTooltip": 0,
 	"id": "",
-	"iteration": 1579804707635,
+	"iteration": 1580240090216,
 	"links": [],
 	"panels": [
 		{
-			"collapsed": false,
+			"collapsed": true,
 			"datasource": null,
 			"gridPos": {
 				"h": 1,
@@ -30,287 +30,102 @@
 				"y": 0
 			},
 			"id": 163,
-			"panels": [],
+			"panels": [
+				{
+					"aliasColors": {},
+					"bars": false,
+					"dashLength": 10,
+					"dashes": false,
+					"datasource": null,
+					"fill": 1,
+					"fillGradient": 0,
+					"gridPos": {
+						"h": 10,
+						"w": 24,
+						"x": 0,
+						"y": 1
+					},
+					"hiddenSeries": false,
+					"id": 165,
+					"legend": {
+						"avg": false,
+						"current": false,
+						"max": false,
+						"min": false,
+						"show": true,
+						"total": false,
+						"values": false
+					},
+					"lines": true,
+					"linewidth": 1,
+					"nullPointMode": "null",
+					"options": {
+						"dataLinks": []
+					},
+					"percentage": false,
+					"pointradius": 2,
+					"points": false,
+					"renderer": "flot",
+					"seriesOverrides": [],
+					"spaceLength": 10,
+					"stack": false,
+					"steppedLine": false,
+					"targets": [
+						{
+							"expr": "container_memory_rss{pod=\"prometheus-k8s-1\",namespace!=\"\",name!=\"\",container=\"prometheus\"}",
+							"legendFormat": "{{container}} - {{pod}}",
+							"refId": "A"
+						},
+						{
+							"expr": "container_memory_rss{pod=\"prometheus-k8s-0\",namespace!=\"\",name!=\"\",container=\"prometheus\"}",
+							"legendFormat": "{{container}} - {{instance}}",
+							"refId": "B"
+						}
+					],
+					"thresholds": [],
+					"timeFrom": null,
+					"timeRegions": [],
+					"timeShift": null,
+					"title": "Prometheus Replica Memory usage",
+					"tooltip": {
+						"shared": true,
+						"sort": 2,
+						"value_type": "individual"
+					},
+					"type": "graph",
+					"xaxis": {
+						"buckets": null,
+						"mode": "time",
+						"name": null,
+						"show": true,
+						"values": []
+					},
+					"yaxes": [
+						{
+							"format": "Bps",
+							"label": null,
+							"logBase": 1,
+							"max": null,
+							"min": null,
+							"show": true
+						},
+						{
+							"format": "short",
+							"label": null,
+							"logBase": 1,
+							"max": null,
+							"min": null,
+							"show": true
+						}
+					],
+					"yaxis": {
+						"align": false,
+						"alignLevel": null
+					}
+				}
+			],
 			"title": "Monitoring stack",
 			"type": "row"
-		},
-		{
-			"aliasColors": {},
-			"bars": false,
-			"dashLength": 10,
-			"dashes": false,
-			"datasource": null,
-			"fill": 1,
-			"fillGradient": 0,
-			"gridPos": {
-				"h": 10,
-				"w": 24,
-				"x": 0,
-				"y": 1
-			},
-			"hiddenSeries": false,
-			"id": 165,
-			"legend": {
-				"alignAsTable": true,
-				"avg": false,
-				"current": false,
-				"max": false,
-				"min": false,
-				"rightSide": true,
-				"show": true,
-				"sideWidth": 250,
-				"total": false,
-				"values": false
-			},
-			"lines": true,
-			"linewidth": 1,
-			"nullPointMode": "null",
-			"options": {
-				"dataLinks": []
-			},
-			"percentage": false,
-			"pointradius": 2,
-			"points": false,
-			"renderer": "flot",
-			"seriesOverrides": [],
-			"spaceLength": 10,
-			"stack": false,
-			"steppedLine": false,
-			"targets": [
-				{
-					"expr": "container_memory_rss{pod=\"prometheus-k8s-1\",namespace!=\"\",name!=\"\",container=\"prometheus\"}",
-					"legendFormat": "{{container}} - {{pod}}",
-					"refId": "A"
-				},
-				{
-					"expr": "container_memory_rss{pod=\"prometheus-k8s-0\",namespace!=\"\",name!=\"\",container=\"prometheus\"}",
-					"legendFormat": "{{container}} - {{pod}}",
-					"refId": "B"
-				}
-			],
-			"thresholds": [],
-			"timeFrom": null,
-			"timeRegions": [],
-			"timeShift": null,
-			"title": "Prometheus Replica Memory usage",
-			"tooltip": {
-				"shared": true,
-				"sort": 2,
-				"value_type": "individual"
-			},
-			"type": "graph",
-			"xaxis": {
-				"buckets": null,
-				"mode": "time",
-				"name": null,
-				"show": true,
-				"values": []
-			},
-			"yaxes": [
-				{
-					"format": "Bps",
-					"label": null,
-					"logBase": 1,
-					"max": null,
-					"min": null,
-					"show": true
-				},
-				{
-					"format": "short",
-					"label": null,
-					"logBase": 1,
-					"max": null,
-					"min": null,
-					"show": false
-				}
-			],
-			"yaxis": {
-				"align": false,
-				"alignLevel": null
-			}
-		},
-		{
-			"aliasColors": {},
-			"bars": false,
-			"dashLength": 10,
-			"dashes": false,
-			"datasource": null,
-			"fill": 1,
-			"fillGradient": 0,
-			"gridPos": {
-				"h": 8,
-				"w": 12,
-				"x": 0,
-				"y": 11
-			},
-			"hiddenSeries": false,
-			"id": 180,
-			"legend": {
-				"alignAsTable": true,
-				"avg": false,
-				"current": false,
-				"max": false,
-				"min": false,
-				"rightSide": true,
-				"show": true,
-				"sideWidth": 250,
-				"total": false,
-				"values": false
-			},
-			"lines": true,
-			"linewidth": 1,
-			"nullPointMode": "null",
-			"options": {
-				"dataLinks": []
-			},
-			"percentage": false,
-			"pointradius": 2,
-			"points": false,
-			"renderer": "flot",
-			"seriesOverrides": [],
-			"spaceLength": 10,
-			"stack": false,
-			"steppedLine": false,
-			"targets": [
-				{
-					"expr": "rate(prometheus_remote_storage_samples_in_total[5m])",
-					"legendFormat": "{{pod}}",
-					"refId": "A"
-				}
-			],
-			"thresholds": [],
-			"timeFrom": null,
-			"timeRegions": [],
-			"timeShift": null,
-			"title": "Sample rate",
-			"tooltip": {
-				"shared": true,
-				"sort": 0,
-				"value_type": "individual"
-			},
-			"type": "graph",
-			"xaxis": {
-				"buckets": null,
-				"mode": "time",
-				"name": null,
-				"show": true,
-				"values": []
-			},
-			"yaxes": [
-				{
-					"format": "short",
-					"label": null,
-					"logBase": 1,
-					"max": null,
-					"min": null,
-					"show": true
-				},
-				{
-					"format": "short",
-					"label": null,
-					"logBase": 1,
-					"max": null,
-					"min": null,
-					"show": false
-				}
-			],
-			"yaxis": {
-				"align": false,
-				"alignLevel": null
-			}
-		},
-		{
-			"aliasColors": {},
-			"bars": false,
-			"dashLength": 10,
-			"dashes": false,
-			"datasource": null,
-			"fill": 3,
-			"fillGradient": 0,
-			"gridPos": {
-				"h": 8,
-				"w": 12,
-				"x": 12,
-				"y": 11
-			},
-			"hiddenSeries": false,
-			"id": 182,
-			"legend": {
-				"alignAsTable": true,
-				"avg": false,
-				"current": false,
-				"hideEmpty": true,
-				"hideZero": true,
-				"max": false,
-				"min": false,
-				"rightSide": true,
-				"show": true,
-				"sideWidth": 250,
-				"total": false,
-				"values": false
-			},
-			"lines": true,
-			"linewidth": 1,
-			"nullPointMode": "null as zero",
-			"options": {
-				"dataLinks": []
-			},
-			"percentage": false,
-			"pointradius": 2,
-			"points": false,
-			"renderer": "flot",
-			"seriesOverrides": [],
-			"spaceLength": 10,
-			"stack": false,
-			"steppedLine": false,
-			"targets": [
-				{
-					"expr": "topk(10,sum(scrape_duration_seconds{job!=\"\",namespace!=\"\",pod!=\"\"}) by (pod))",
-					"interval": "",
-					"legendFormat": "{{pod}}",
-					"refId": "A"
-				}
-			],
-			"thresholds": [],
-			"timeFrom": null,
-			"timeRegions": [],
-			"timeShift": null,
-			"title": "Scrape duration",
-			"tooltip": {
-				"shared": true,
-				"sort": 2,
-				"value_type": "individual"
-			},
-			"type": "graph",
-			"xaxis": {
-				"buckets": null,
-				"mode": "time",
-				"name": null,
-				"show": true,
-				"values": []
-			},
-			"yaxes": [
-				{
-					"format": "short",
-					"label": null,
-					"logBase": 1,
-					"max": null,
-					"min": null,
-					"show": true
-				},
-				{
-					"format": "short",
-					"label": null,
-					"logBase": 1,
-					"max": null,
-					"min": null,
-					"show": false
-				}
-			],
-			"yaxis": {
-				"align": false,
-				"alignLevel": null
-			}
 		},
 		{
 			"collapsed": true,
@@ -319,7 +134,7 @@
 				"h": 1,
 				"w": 24,
 				"x": 0,
-				"y": 19
+				"y": 1
 			},
 			"id": 146,
 			"panels": [
@@ -335,7 +150,7 @@
 						"h": 8,
 						"w": 12,
 						"x": 0,
-						"y": 20
+						"y": 2
 					},
 					"hiddenSeries": false,
 					"id": 143,
@@ -428,7 +243,7 @@
 						"h": 8,
 						"w": 12,
 						"x": 12,
-						"y": 20
+						"y": 2
 					},
 					"hiddenSeries": false,
 					"id": 144,
@@ -521,7 +336,7 @@
 						"h": 8,
 						"w": 12,
 						"x": 0,
-						"y": 28
+						"y": 10
 					},
 					"hiddenSeries": false,
 					"id": 157,
@@ -614,7 +429,7 @@
 						"h": 8,
 						"w": 12,
 						"x": 12,
-						"y": 28
+						"y": 10
 					},
 					"hiddenSeries": false,
 					"id": 158,
@@ -706,7 +521,7 @@
 				"h": 1,
 				"w": 24,
 				"x": 0,
-				"y": 20
+				"y": 2
 			},
 			"id": 118,
 			"panels": [],
@@ -725,7 +540,7 @@
 				"h": 8,
 				"w": 24,
 				"x": 0,
-				"y": 21
+				"y": 3
 			},
 			"hiddenSeries": false,
 			"id": 161,
@@ -812,13 +627,13 @@
 			"dashLength": 10,
 			"dashes": false,
 			"datasource": "$datasource",
-			"fill": 1,
+			"fill": 4,
 			"fillGradient": 0,
 			"gridPos": {
 				"h": 8,
 				"w": 8,
 				"x": 0,
-				"y": 29
+				"y": 11
 			},
 			"hiddenSeries": false,
 			"id": 120,
@@ -845,7 +660,12 @@
 			"pointradius": 2,
 			"points": false,
 			"renderer": "flot",
-			"seriesOverrides": [],
+			"seriesOverrides": [
+				{
+					"alias": "Number of nodes",
+					"color": "#F2495C"
+				}
+			],
 			"spaceLength": 10,
 			"stack": false,
 			"steppedLine": false,
@@ -905,13 +725,13 @@
 			"dashLength": 10,
 			"dashes": false,
 			"datasource": "$datasource",
-			"fill": 1,
+			"fill": 4,
 			"fillGradient": 0,
 			"gridPos": {
 				"h": 8,
 				"w": 8,
 				"x": 8,
-				"y": 29
+				"y": 11
 			},
 			"hiddenSeries": false,
 			"id": 103,
@@ -938,7 +758,12 @@
 			"pointradius": 2,
 			"points": false,
 			"renderer": "flot",
-			"seriesOverrides": [],
+			"seriesOverrides": [
+				{
+					"alias": "Namespace Count",
+					"color": "#5794F2"
+				}
+			],
 			"spaceLength": 10,
 			"stack": false,
 			"steppedLine": false,
@@ -998,13 +823,13 @@
 			"dashLength": 10,
 			"dashes": false,
 			"datasource": "$datasource",
-			"fill": 2,
+			"fill": 4,
 			"fillGradient": 0,
 			"gridPos": {
 				"h": 8,
 				"w": 8,
 				"x": 16,
-				"y": 29
+				"y": 11
 			},
 			"hiddenSeries": false,
 			"id": 101,
@@ -1037,28 +862,28 @@
 			"steppedLine": false,
 			"targets": [
 				{
-					"expr": "sum(kube_pod_status_phase{phase=\"Running\",clustername=~\"$clustername\"})",
+					"expr": "sum(kube_pod_status_phase{phase=\"Running\",namespace=~\"$namespace\",clustername=~\"$clustername\"})",
 					"format": "time_series",
 					"intervalFactor": 1,
 					"legendFormat": "Running Pods",
 					"refId": "A"
 				},
 				{
-					"expr": "sum(kube_pod_status_phase{phase=\"Succeeded\",clustername=~\"$clustername\"})",
+					"expr": "sum(kube_pod_status_phase{phase=\"Succeeded\",namespace=~\"$namespace\",clustername=~\"$clustername\"})",
 					"format": "time_series",
 					"intervalFactor": 1,
 					"legendFormat": "Succeeded Pods",
 					"refId": "B"
 				},
 				{
-					"expr": "sum(kube_pod_status_phase{phase=\"Failed\",clustername=~\"$clustername\"})",
+					"expr": "sum(kube_pod_status_phase{phase=\"Failed\",namespace=~\"$namespace\",clustername=~\"$clustername\"})",
 					"format": "time_series",
 					"intervalFactor": 1,
 					"legendFormat": "Failed Pods",
 					"refId": "C"
 				},
 				{
-					"expr": "sum(kube_pod_status_phase{phase=\"Pending\",clustername=~\"$clustername\"})",
+					"expr": "sum(kube_pod_status_phase{phase=\"Pending\",namespace=~\"$namespace\",clustername=~\"$clustername\"})",
 					"format": "time_series",
 					"intervalFactor": 1,
 					"legendFormat": "Pending Pods",
@@ -1069,10 +894,304 @@
 			"timeFrom": null,
 			"timeRegions": [],
 			"timeShift": null,
-			"title": "pod count",
+			"title": "Pod count",
 			"tooltip": {
 				"shared": true,
 				"sort": 0,
+				"value_type": "individual"
+			},
+			"type": "graph",
+			"xaxis": {
+				"buckets": null,
+				"mode": "time",
+				"name": null,
+				"show": true,
+				"values": []
+			},
+			"yaxes": [
+				{
+					"format": "short",
+					"label": null,
+					"logBase": 1,
+					"max": null,
+					"min": null,
+					"show": true
+				},
+				{
+					"format": "short",
+					"label": null,
+					"logBase": 1,
+					"max": null,
+					"min": null,
+					"show": false
+				}
+			],
+			"yaxis": {
+				"align": false,
+				"alignLevel": null
+			}
+		},
+		{
+			"aliasColors": {},
+			"bars": false,
+			"dashLength": 10,
+			"dashes": false,
+			"datasource": "$datasource",
+			"fill": 4,
+			"fillGradient": 0,
+			"gridPos": {
+				"h": 8,
+				"w": 8,
+				"x": 0,
+				"y": 19
+			},
+			"hiddenSeries": false,
+			"id": 180,
+			"legend": {
+				"alignAsTable": true,
+				"avg": false,
+				"current": true,
+				"max": true,
+				"min": false,
+				"rightSide": false,
+				"show": true,
+				"sideWidth": 250,
+				"total": false,
+				"values": true
+			},
+			"lines": true,
+			"linewidth": 1,
+			"links": [],
+			"nullPointMode": "null",
+			"options": {
+				"dataLinks": []
+			},
+			"percentage": false,
+			"pointradius": 2,
+			"points": false,
+			"renderer": "flot",
+			"seriesOverrides": [
+				{
+					"alias": "count(kube_secret_info{namespace=~\".*\"})",
+					"color": "#B877D9"
+				}
+			],
+			"spaceLength": 10,
+			"stack": true,
+			"steppedLine": false,
+			"targets": [
+				{
+					"expr": "count(kube_secret_info{namespace=~\"$namespace\"})",
+					"format": "time_series",
+					"intervalFactor": 1,
+					"legendFormat": "",
+					"refId": "A"
+				}
+			],
+			"thresholds": [],
+			"timeFrom": null,
+			"timeRegions": [],
+			"timeShift": null,
+			"title": "Secret count",
+			"tooltip": {
+				"shared": true,
+				"sort": 2,
+				"value_type": "individual"
+			},
+			"type": "graph",
+			"xaxis": {
+				"buckets": null,
+				"mode": "time",
+				"name": null,
+				"show": true,
+				"values": []
+			},
+			"yaxes": [
+				{
+					"format": "short",
+					"label": null,
+					"logBase": 1,
+					"max": null,
+					"min": null,
+					"show": true
+				},
+				{
+					"format": "short",
+					"label": null,
+					"logBase": 1,
+					"max": null,
+					"min": null,
+					"show": false
+				}
+			],
+			"yaxis": {
+				"align": false,
+				"alignLevel": null
+			}
+		},
+		{
+			"aliasColors": {},
+			"bars": false,
+			"dashLength": 10,
+			"dashes": false,
+			"datasource": "$datasource",
+			"fill": 4,
+			"fillGradient": 0,
+			"gridPos": {
+				"h": 8,
+				"w": 8,
+				"x": 8,
+				"y": 19
+			},
+			"hiddenSeries": false,
+			"id": 181,
+			"legend": {
+				"alignAsTable": true,
+				"avg": false,
+				"current": true,
+				"max": true,
+				"min": false,
+				"rightSide": false,
+				"show": true,
+				"sideWidth": 250,
+				"total": false,
+				"values": true
+			},
+			"lines": true,
+			"linewidth": 1,
+			"links": [],
+			"nullPointMode": "null",
+			"options": {
+				"dataLinks": []
+			},
+			"percentage": false,
+			"pointradius": 2,
+			"points": false,
+			"renderer": "flot",
+			"seriesOverrides": [
+				{
+					"alias": "deployments",
+					"color": "rgb(2, 255, 0)"
+				}
+			],
+			"spaceLength": 10,
+			"stack": true,
+			"steppedLine": false,
+			"targets": [
+				{
+					"expr": "count(kube_deployment_labels{namespace=~\"$namespace\"})",
+					"format": "time_series",
+					"intervalFactor": 1,
+					"legendFormat": "deployments",
+					"refId": "A"
+				}
+			],
+			"thresholds": [],
+			"timeFrom": null,
+			"timeRegions": [],
+			"timeShift": null,
+			"title": "Deployment count",
+			"tooltip": {
+				"shared": true,
+				"sort": 2,
+				"value_type": "individual"
+			},
+			"type": "graph",
+			"xaxis": {
+				"buckets": null,
+				"mode": "time",
+				"name": null,
+				"show": true,
+				"values": []
+			},
+			"yaxes": [
+				{
+					"format": "short",
+					"label": null,
+					"logBase": 1,
+					"max": null,
+					"min": null,
+					"show": true
+				},
+				{
+					"format": "short",
+					"label": null,
+					"logBase": 1,
+					"max": null,
+					"min": null,
+					"show": false
+				}
+			],
+			"yaxis": {
+				"align": false,
+				"alignLevel": null
+			}
+		},
+		{
+			"aliasColors": {},
+			"bars": false,
+			"dashLength": 10,
+			"dashes": false,
+			"datasource": "$datasource",
+			"fill": 4,
+			"fillGradient": 0,
+			"gridPos": {
+				"h": 8,
+				"w": 8,
+				"x": 16,
+				"y": 19
+			},
+			"hiddenSeries": false,
+			"id": 182,
+			"legend": {
+				"alignAsTable": true,
+				"avg": false,
+				"current": true,
+				"max": true,
+				"min": false,
+				"rightSide": false,
+				"show": true,
+				"sideWidth": 250,
+				"total": false,
+				"values": true
+			},
+			"lines": true,
+			"linewidth": 1,
+			"links": [],
+			"nullPointMode": "null",
+			"options": {
+				"dataLinks": []
+			},
+			"percentage": false,
+			"pointradius": 2,
+			"points": false,
+			"renderer": "flot",
+			"seriesOverrides": [
+				{
+					"alias": "configmaps",
+					"color": "rgb(242, 0, 145)"
+				}
+			],
+			"spaceLength": 10,
+			"stack": true,
+			"steppedLine": false,
+			"targets": [
+				{
+					"expr": "count(kube_configmap_info{namespace=~\"$namespace\"})",
+					"format": "time_series",
+					"intervalFactor": 1,
+					"legendFormat": "configmaps",
+					"refId": "A"
+				}
+			],
+			"thresholds": [],
+			"timeFrom": null,
+			"timeRegions": [],
+			"timeShift": null,
+			"title": "Configmap count",
+			"tooltip": {
+				"shared": true,
+				"sort": 2,
 				"value_type": "individual"
 			},
 			"type": "graph",
@@ -1118,7 +1237,7 @@
 				"h": 8,
 				"w": 12,
 				"x": 0,
-				"y": 37
+				"y": 27
 			},
 			"hiddenSeries": false,
 			"id": 122,
@@ -1211,7 +1330,7 @@
 				"h": 8,
 				"w": 12,
 				"x": 12,
-				"y": 37
+				"y": 27
 			},
 			"hiddenSeries": false,
 			"id": 141,
@@ -1311,7 +1430,7 @@
 				"h": 8,
 				"w": 12,
 				"x": 0,
-				"y": 45
+				"y": 35
 			},
 			"hiddenSeries": false,
 			"id": 177,
@@ -1416,7 +1535,7 @@
 				"h": 8,
 				"w": 12,
 				"x": 12,
-				"y": 45
+				"y": 35
 			},
 			"hiddenSeries": false,
 			"id": 178,
@@ -1521,7 +1640,7 @@
 				"h": 8,
 				"w": 12,
 				"x": 0,
-				"y": 53
+				"y": 43
 			},
 			"hiddenSeries": false,
 			"id": 116,
@@ -1614,7 +1733,7 @@
 				"h": 8,
 				"w": 12,
 				"x": 12,
-				"y": 53
+				"y": 43
 			},
 			"hiddenSeries": false,
 			"id": 114,
@@ -1705,9 +1824,102 @@
 			"fillGradient": 0,
 			"gridPos": {
 				"h": 8,
-				"w": 24,
+				"w": 12,
 				"x": 0,
-				"y": 61
+				"y": 51
+			},
+			"hiddenSeries": false,
+			"id": 179,
+			"legend": {
+				"alignAsTable": true,
+				"avg": false,
+				"current": true,
+				"max": true,
+				"min": false,
+				"rightSide": true,
+				"show": true,
+				"sideWidth": 250,
+				"total": false,
+				"values": true
+			},
+			"lines": true,
+			"linewidth": 1,
+			"links": [],
+			"nullPointMode": "null",
+			"options": {
+				"dataLinks": []
+			},
+			"percentage": false,
+			"pointradius": 2,
+			"points": false,
+			"renderer": "flot",
+			"seriesOverrides": [],
+			"spaceLength": 10,
+			"stack": false,
+			"steppedLine": false,
+			"targets": [
+				{
+					"expr": "sum(apiserver_current_inflight_requests) by (requestKind)",
+					"format": "time_series",
+					"intervalFactor": 1,
+					"legendFormat": "{{ requestKind }}",
+					"refId": "A"
+				}
+			],
+			"thresholds": [],
+			"timeFrom": null,
+			"timeRegions": [],
+			"timeShift": null,
+			"title": "Inflight API Requests",
+			"tooltip": {
+				"shared": true,
+				"sort": 2,
+				"value_type": "individual"
+			},
+			"type": "graph",
+			"xaxis": {
+				"buckets": null,
+				"mode": "time",
+				"name": null,
+				"show": true,
+				"values": []
+			},
+			"yaxes": [
+				{
+					"format": "short",
+					"label": null,
+					"logBase": 1,
+					"max": null,
+					"min": null,
+					"show": true
+				},
+				{
+					"format": "short",
+					"label": null,
+					"logBase": 1,
+					"max": null,
+					"min": null,
+					"show": false
+				}
+			],
+			"yaxis": {
+				"align": false,
+				"alignLevel": null
+			}
+		},
+		{
+			"aliasColors": {},
+			"bars": false,
+			"dashLength": 10,
+			"dashes": false,
+			"datasource": "$datasource",
+			"fill": 1,
+			"fillGradient": 0,
+			"gridPos": {
+				"h": 8,
+				"w": 12,
+				"x": 12,
+				"y": 51
 			},
 			"hiddenSeries": false,
 			"id": 142,
@@ -1795,7 +2007,7 @@
 				"h": 1,
 				"w": 24,
 				"x": 0,
-				"y": 69
+				"y": 59
 			},
 			"id": 99,
 			"panels": [
@@ -1863,8 +2075,8 @@
 					"scopedVars": {
 						"_node": {
 							"selected": true,
-							"text": "ip-10-0-134-211.us-west-2.compute.internal",
-							"value": "ip-10-0-134-211.us-west-2.compute.internal"
+							"text": "ip-10-0-132-167.us-west-2.compute.internal",
+							"value": "ip-10-0-132-167.us-west-2.compute.internal"
 						}
 					},
 					"seriesOverrides": [
@@ -2028,8 +2240,8 @@
 					"scopedVars": {
 						"_node": {
 							"selected": true,
-							"text": "ip-10-0-134-211.us-west-2.compute.internal",
-							"value": "ip-10-0-134-211.us-west-2.compute.internal"
+							"text": "ip-10-0-132-167.us-west-2.compute.internal",
+							"value": "ip-10-0-132-167.us-west-2.compute.internal"
 						}
 					},
 					"seriesOverrides": [
@@ -2165,8 +2377,8 @@
 					"scopedVars": {
 						"_node": {
 							"selected": true,
-							"text": "ip-10-0-134-211.us-west-2.compute.internal",
-							"value": "ip-10-0-134-211.us-west-2.compute.internal"
+							"text": "ip-10-0-132-167.us-west-2.compute.internal",
+							"value": "ip-10-0-132-167.us-west-2.compute.internal"
 						}
 					},
 					"seriesOverrides": [
@@ -2286,8 +2498,8 @@
 					"scopedVars": {
 						"_node": {
 							"selected": true,
-							"text": "ip-10-0-134-211.us-west-2.compute.internal",
-							"value": "ip-10-0-134-211.us-west-2.compute.internal"
+							"text": "ip-10-0-132-167.us-west-2.compute.internal",
+							"value": "ip-10-0-132-167.us-west-2.compute.internal"
 						}
 					},
 					"seriesOverrides": [
@@ -2406,8 +2618,8 @@
 					"scopedVars": {
 						"_node": {
 							"selected": true,
-							"text": "ip-10-0-134-211.us-west-2.compute.internal",
-							"value": "ip-10-0-134-211.us-west-2.compute.internal"
+							"text": "ip-10-0-132-167.us-west-2.compute.internal",
+							"value": "ip-10-0-132-167.us-west-2.compute.internal"
 						}
 					},
 					"seriesOverrides": [],
@@ -2517,8 +2729,8 @@
 					"scopedVars": {
 						"_node": {
 							"selected": true,
-							"text": "ip-10-0-134-211.us-west-2.compute.internal",
-							"value": "ip-10-0-134-211.us-west-2.compute.internal"
+							"text": "ip-10-0-132-167.us-west-2.compute.internal",
+							"value": "ip-10-0-132-167.us-west-2.compute.internal"
 						}
 					},
 					"seriesOverrides": [],
@@ -2629,8 +2841,8 @@
 					"scopedVars": {
 						"_node": {
 							"selected": true,
-							"text": "ip-10-0-134-211.us-west-2.compute.internal",
-							"value": "ip-10-0-134-211.us-west-2.compute.internal"
+							"text": "ip-10-0-132-167.us-west-2.compute.internal",
+							"value": "ip-10-0-132-167.us-west-2.compute.internal"
 						}
 					},
 					"seriesOverrides": [],
@@ -2731,8 +2943,8 @@
 					"scopedVars": {
 						"_node": {
 							"selected": true,
-							"text": "ip-10-0-134-211.us-west-2.compute.internal",
-							"value": "ip-10-0-134-211.us-west-2.compute.internal"
+							"text": "ip-10-0-132-167.us-west-2.compute.internal",
+							"value": "ip-10-0-132-167.us-west-2.compute.internal"
 						}
 					},
 					"seriesOverrides": [],
@@ -2795,8 +3007,8 @@
 			"scopedVars": {
 				"_node": {
 					"selected": true,
-					"text": "ip-10-0-134-211.us-west-2.compute.internal",
-					"value": "ip-10-0-134-211.us-west-2.compute.internal"
+					"text": "ip-10-0-132-167.us-west-2.compute.internal",
+					"value": "ip-10-0-132-167.us-west-2.compute.internal"
 				}
 			},
 			"title": "Master : $_node",
@@ -2809,7 +3021,7 @@
 				"h": 1,
 				"w": 24,
 				"x": 0,
-				"y": 70
+				"y": 945
 			},
 			"id": 167,
 			"panels": [
@@ -2842,7 +3054,7 @@
 						"h": 9,
 						"w": 12,
 						"x": 0,
-						"y": 5
+						"y": 20
 					},
 					"hiddenSeries": false,
 					"id": 168,
@@ -3004,7 +3216,7 @@
 						"h": 9,
 						"w": 12,
 						"x": 12,
-						"y": 5
+						"y": 20
 					},
 					"hiddenSeries": false,
 					"id": 96,
@@ -3132,7 +3344,7 @@
 						"h": 10,
 						"w": 12,
 						"x": 0,
-						"y": 14
+						"y": 29
 					},
 					"hiddenSeries": false,
 					"id": 170,
@@ -3246,7 +3458,7 @@
 						"h": 10,
 						"w": 12,
 						"x": 12,
-						"y": 14
+						"y": 29
 					},
 					"hiddenSeries": false,
 					"id": 82,
@@ -3360,7 +3572,7 @@
 						"h": 8,
 						"w": 12,
 						"x": 0,
-						"y": 24
+						"y": 39
 					},
 					"hiddenSeries": false,
 					"id": 172,
@@ -3464,7 +3676,7 @@
 						"h": 8,
 						"w": 12,
 						"x": 12,
-						"y": 24
+						"y": 39
 					},
 					"hiddenSeries": false,
 					"id": 97,
@@ -3569,7 +3781,7 @@
 						"h": 8,
 						"w": 12,
 						"x": 0,
-						"y": 32
+						"y": 47
 					},
 					"hiddenSeries": false,
 					"id": 174,
@@ -3664,7 +3876,7 @@
 						"h": 8,
 						"w": 12,
 						"x": 12,
-						"y": 32
+						"y": 47
 					},
 					"hiddenSeries": false,
 					"id": 63,
@@ -3759,7 +3971,7 @@
 				"h": 1,
 				"w": 24,
 				"x": 0,
-				"y": 71
+				"y": 946
 			},
 			"id": 148,
 			"panels": [
@@ -3775,7 +3987,7 @@
 						"h": 9,
 						"w": 24,
 						"x": 0,
-						"y": 27
+						"y": 16
 					},
 					"hiddenSeries": false,
 					"id": 160,
@@ -3801,8 +4013,8 @@
 					"scopedVars": {
 						"_worker_node": {
 							"selected": true,
-							"text": "ip-10-0-128-106.us-west-2.compute.internal",
-							"value": "ip-10-0-128-106.us-west-2.compute.internal"
+							"text": "ip-10-0-128-245.us-west-2.compute.internal",
+							"value": "ip-10-0-128-245.us-west-2.compute.internal"
 						}
 					},
 					"seriesOverrides": [],
@@ -3886,7 +4098,7 @@
 						"h": 9,
 						"w": 12,
 						"x": 0,
-						"y": 36
+						"y": 25
 					},
 					"hiddenSeries": false,
 					"id": 149,
@@ -3920,8 +4132,8 @@
 					"scopedVars": {
 						"_worker_node": {
 							"selected": true,
-							"text": "ip-10-0-128-106.us-west-2.compute.internal",
-							"value": "ip-10-0-128-106.us-west-2.compute.internal"
+							"text": "ip-10-0-128-245.us-west-2.compute.internal",
+							"value": "ip-10-0-128-245.us-west-2.compute.internal"
 						}
 					},
 					"seriesOverrides": [
@@ -4005,7 +4217,7 @@
 					"timeFrom": null,
 					"timeRegions": [],
 					"timeShift": null,
-					"title": "CPU Basic : $_node",
+					"title": "CPU Basic : $_worker_node",
 					"tooltip": {
 						"shared": true,
 						"sort": 0,
@@ -4055,7 +4267,7 @@
 						"h": 9,
 						"w": 12,
 						"x": 12,
-						"y": 36
+						"y": 25
 					},
 					"hiddenSeries": false,
 					"id": 169,
@@ -4085,8 +4297,8 @@
 					"scopedVars": {
 						"_worker_node": {
 							"selected": true,
-							"text": "ip-10-0-128-106.us-west-2.compute.internal",
-							"value": "ip-10-0-128-106.us-west-2.compute.internal"
+							"text": "ip-10-0-128-245.us-west-2.compute.internal",
+							"value": "ip-10-0-128-245.us-west-2.compute.internal"
 						}
 					},
 					"seriesOverrides": [
@@ -4137,7 +4349,7 @@
 					"timeFrom": null,
 					"timeRegions": [],
 					"timeShift": null,
-					"title": "System Memory : $_node",
+					"title": "System Memory : $_worker_node",
 					"tooltip": {
 						"shared": true,
 						"sort": 0,
@@ -4189,7 +4401,7 @@
 						"h": 10,
 						"w": 12,
 						"x": 0,
-						"y": 45
+						"y": 34
 					},
 					"hiddenSeries": false,
 					"id": 151,
@@ -4221,8 +4433,8 @@
 					"scopedVars": {
 						"_worker_node": {
 							"selected": true,
-							"text": "ip-10-0-128-106.us-west-2.compute.internal",
-							"value": "ip-10-0-128-106.us-west-2.compute.internal"
+							"text": "ip-10-0-128-245.us-west-2.compute.internal",
+							"value": "ip-10-0-128-245.us-west-2.compute.internal"
 						}
 					},
 					"seriesOverrides": [
@@ -4259,7 +4471,7 @@
 					"timeFrom": null,
 					"timeRegions": [],
 					"timeShift": null,
-					"title": "Disk Throughput : $_node",
+					"title": "Disk Throughput : $_worker_node",
 					"tooltip": {
 						"shared": true,
 						"sort": 0,
@@ -4310,7 +4522,7 @@
 						"h": 10,
 						"w": 12,
 						"x": 12,
-						"y": 45
+						"y": 34
 					},
 					"hiddenSeries": false,
 					"id": 171,
@@ -4342,8 +4554,8 @@
 					"scopedVars": {
 						"_worker_node": {
 							"selected": true,
-							"text": "ip-10-0-128-106.us-west-2.compute.internal",
-							"value": "ip-10-0-128-106.us-west-2.compute.internal"
+							"text": "ip-10-0-128-245.us-west-2.compute.internal",
+							"value": "ip-10-0-128-245.us-west-2.compute.internal"
 						}
 					},
 					"seriesOverrides": [
@@ -4380,7 +4592,7 @@
 					"timeFrom": null,
 					"timeRegions": [],
 					"timeShift": null,
-					"title": "Disk IOPS : $_node",
+					"title": "Disk IOPS : $_worker_node",
 					"tooltip": {
 						"shared": true,
 						"sort": 0,
@@ -4430,7 +4642,7 @@
 						"h": 8,
 						"w": 12,
 						"x": 0,
-						"y": 55
+						"y": 44
 					},
 					"hiddenSeries": false,
 					"id": 153,
@@ -4461,8 +4673,8 @@
 					"scopedVars": {
 						"_worker_node": {
 							"selected": true,
-							"text": "ip-10-0-128-106.us-west-2.compute.internal",
-							"value": "ip-10-0-128-106.us-west-2.compute.internal"
+							"text": "ip-10-0-128-245.us-west-2.compute.internal",
+							"value": "ip-10-0-128-245.us-west-2.compute.internal"
 						}
 					},
 					"seriesOverrides": [],
@@ -4491,7 +4703,7 @@
 					"timeFrom": null,
 					"timeRegions": [],
 					"timeShift": null,
-					"title": "Network Utilization : $_node",
+					"title": "Network Utilization : $_worker_node",
 					"tooltip": {
 						"shared": true,
 						"sort": 0,
@@ -4541,7 +4753,7 @@
 						"h": 8,
 						"w": 12,
 						"x": 12,
-						"y": 55
+						"y": 44
 					},
 					"hiddenSeries": false,
 					"id": 173,
@@ -4572,8 +4784,8 @@
 					"scopedVars": {
 						"_worker_node": {
 							"selected": true,
-							"text": "ip-10-0-128-106.us-west-2.compute.internal",
-							"value": "ip-10-0-128-106.us-west-2.compute.internal"
+							"text": "ip-10-0-128-245.us-west-2.compute.internal",
+							"value": "ip-10-0-128-245.us-west-2.compute.internal"
 						}
 					},
 					"seriesOverrides": [],
@@ -4602,7 +4814,7 @@
 					"timeFrom": null,
 					"timeRegions": [],
 					"timeShift": null,
-					"title": "Network packets/s : $_node",
+					"title": "Network packets/s : $_worker_node",
 					"tooltip": {
 						"shared": true,
 						"sort": 0,
@@ -4652,7 +4864,7 @@
 						"h": 8,
 						"w": 12,
 						"x": 0,
-						"y": 63
+						"y": 52
 					},
 					"hiddenSeries": false,
 					"id": 155,
@@ -4683,8 +4895,8 @@
 					"scopedVars": {
 						"_worker_node": {
 							"selected": true,
-							"text": "ip-10-0-128-106.us-west-2.compute.internal",
-							"value": "ip-10-0-128-106.us-west-2.compute.internal"
+							"text": "ip-10-0-128-245.us-west-2.compute.internal",
+							"value": "ip-10-0-128-245.us-west-2.compute.internal"
 						}
 					},
 					"seriesOverrides": [],
@@ -4704,7 +4916,7 @@
 					"timeFrom": null,
 					"timeRegions": [],
 					"timeShift": null,
-					"title": "Container CPU Usage : $_node",
+					"title": "Container CPU Usage : $_worker_node",
 					"tooltip": {
 						"shared": true,
 						"sort": 2,
@@ -4754,7 +4966,7 @@
 						"h": 8,
 						"w": 12,
 						"x": 12,
-						"y": 63
+						"y": 52
 					},
 					"hiddenSeries": false,
 					"id": 175,
@@ -4785,8 +4997,8 @@
 					"scopedVars": {
 						"_worker_node": {
 							"selected": true,
-							"text": "ip-10-0-128-106.us-west-2.compute.internal",
-							"value": "ip-10-0-128-106.us-west-2.compute.internal"
+							"text": "ip-10-0-128-245.us-west-2.compute.internal",
+							"value": "ip-10-0-128-245.us-west-2.compute.internal"
 						}
 					},
 					"seriesOverrides": [],
@@ -4806,7 +5018,7 @@
 					"timeFrom": null,
 					"timeRegions": [],
 					"timeShift": null,
-					"title": "Process RSS :$_node",
+					"title": "Process RSS :$_worker_node",
 					"tooltip": {
 						"shared": true,
 						"sort": 2,
@@ -4849,15 +5061,15 @@
 			"scopedVars": {
 				"_worker_node": {
 					"selected": true,
-					"text": "ip-10-0-128-106.us-west-2.compute.internal",
-					"value": "ip-10-0-128-106.us-west-2.compute.internal"
+					"text": "ip-10-0-128-245.us-west-2.compute.internal",
+					"value": "ip-10-0-128-245.us-west-2.compute.internal"
 				}
 			},
 			"title": "Worker : $_worker_node",
 			"type": "row"
 		}
 	],
-	"refresh": "",
+	"refresh": false,
 	"schemaVersion": 22,
 	"style": "dark",
 	"tags": [],
@@ -4884,9 +5096,9 @@
 			{
 				"allValue": null,
 				"current": {
-					"text": "ip-10-0-134-211.us-west-2.compute.internal",
+					"text": "ip-10-0-132-167.us-west-2.compute.internal",
 					"value": [
-						"ip-10-0-134-211.us-west-2.compute.internal"
+						"ip-10-0-132-167.us-west-2.compute.internal"
 					]
 				},
 				"datasource": "$datasource",
@@ -4911,8 +5123,8 @@
 			{
 				"allValue": null,
 				"current": {
-					"text": "ip-10-0-128-106.us-west-2.compute.internal",
-					"value": "ip-10-0-128-106.us-west-2.compute.internal"
+					"text": "ip-10-0-128-245.us-west-2.compute.internal",
+					"value": "ip-10-0-128-245.us-west-2.compute.internal"
 				},
 				"datasource": "$datasource",
 				"definition": "label_values(kube_node_role{role=\"worker\"}, node)",
@@ -4936,9 +5148,8 @@
 			{
 				"allValue": null,
 				"current": {
-					"selected": true,
-					"text": "ip-10-0-158-192.us-west-2.compute.internal",
-					"value": "ip-10-0-158-192.us-west-2.compute.internal"
+					"text": "ip-10-0-141-95.us-west-2.compute.internal",
+					"value": "ip-10-0-141-95.us-west-2.compute.internal"
 				},
 				"datasource": "$datasource",
 				"definition": "label_values(kube_node_role{role=\"infra\"}, node)",
@@ -4960,9 +5171,9 @@
 				"useTags": false
 			},
 			{
-				"allValue": null,
+				"allValue": ".*",
 				"current": {
-					"selected": false,
+					"selected": true,
 					"text": "All",
 					"value": "$__all"
 				},
@@ -5069,7 +5280,7 @@
 		]
 	},
 	"time": {
-		"from": "now-30m",
+		"from": "now-2d",
 		"to": "now"
 	},
 	"timepicker": {
@@ -5100,5 +5311,5 @@
 	"timezone": "",
 	"title": "OpenShift Cluster Performance Dashboard",
 	"uid": "",
-	"version": 5
+	"version": 15
 }
