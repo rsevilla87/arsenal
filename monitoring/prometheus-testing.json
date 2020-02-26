@@ -1,34 +1,4 @@
 {
-  "__inputs": [
-    {
-      "name": "DS_CLUSTER_PROMETHEUS",
-      "label": "Cluster Prometheus",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "prometheus",
-      "pluginName": "Prometheus"
-    }
-  ],
-  "__requires": [
-    {
-      "type": "grafana",
-      "id": "grafana",
-      "name": "Grafana",
-      "version": "6.6.0-pre"
-    },
-    {
-      "type": "panel",
-      "id": "graph",
-      "name": "Graph",
-      "version": ""
-    },
-    {
-      "type": "datasource",
-      "id": "prometheus",
-      "name": "Prometheus",
-      "version": "1.0.0"
-    }
-  ],
   "annotations": {
     "list": [
       {
@@ -46,13 +16,13 @@
   "editable": true,
   "gnetId": 10092,
   "graphTooltip": 0,
-  "id": null,
-  "iteration": 1580411592586,
+  "id": 59,
+  "iteration": 1582732591616,
   "links": [],
   "panels": [
     {
       "collapsed": false,
-      "datasource": "${DS_CLUSTER_PROMETHEUS}",
+      "datasource": "Prometheus-aws-ocp43-2000",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -69,7 +39,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_CLUSTER_PROMETHEUS}",
+      "datasource": "Prometheus-aws-ocp43-2000",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -159,7 +129,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_CLUSTER_PROMETHEUS}",
+      "datasource": "Prometheus-aws-ocp43-2000",
       "fill": 3,
       "fillGradient": 0,
       "gridPos": {
@@ -252,7 +222,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_CLUSTER_PROMETHEUS}",
+      "datasource": "Prometheus-aws-ocp43-2000",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -343,13 +313,292 @@
       }
     },
     {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus-aws-ocp43-2000",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 17
+      },
+      "hiddenSeries": false,
+      "id": 184,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": false,
+        "max": true,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "sideWidth": 500,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(avg_over_time(scrape_samples_scraped[15m])) by (job)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{job}}- sum",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "number of samples",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus-aws-ocp43-2000",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 25
+      },
+      "hiddenSeries": false,
+      "id": 185,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": false,
+        "max": true,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "sideWidth": 500,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "count({__name__=~\".+\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "number of active series",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus-aws-ocp43-2000",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 33
+      },
+      "hiddenSeries": false,
+      "id": 186,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": false,
+        "max": true,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "sideWidth": 500,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "topk(10, count by (job)({__name__=~\".+\"}))",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "topk of jobs exposing metrics",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
       "collapsed": false,
-      "datasource": "${DS_CLUSTER_PROMETHEUS}",
+      "datasource": "Prometheus-aws-ocp43-2000",
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 17
+        "y": 41
       },
       "id": 118,
       "panels": [],
@@ -368,7 +617,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 18
+        "y": 42
       },
       "hiddenSeries": false,
       "id": 122,
@@ -461,7 +710,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 18
+        "y": 42
       },
       "hiddenSeries": false,
       "id": 114,
@@ -544,16 +793,23 @@
     },
     {
       "collapsed": false,
-      "datasource": "${DS_CLUSTER_PROMETHEUS}",
+      "datasource": "Prometheus-aws-ocp43-2000",
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 26
+        "y": 50
       },
       "id": 167,
       "panels": [],
       "repeat": "_infra_node",
+      "scopedVars": {
+        "_infra_node": {
+          "selected": true,
+          "text": "ip-10-0-130-1.us-west-2.compute.internal",
+          "value": "ip-10-0-130-1.us-west-2.compute.internal"
+        }
+      },
       "title": "Infra : $_infra_node",
       "type": "row"
     },
@@ -570,7 +826,7 @@
         "h": 10,
         "w": 12,
         "x": 0,
-        "y": 27
+        "y": 51
       },
       "hiddenSeries": false,
       "id": 170,
@@ -599,6 +855,13 @@
       "points": false,
       "renderer": "flot",
       "repeatDirection": "v",
+      "scopedVars": {
+        "_infra_node": {
+          "selected": true,
+          "text": "ip-10-0-130-1.us-west-2.compute.internal",
+          "value": "ip-10-0-130-1.us-west-2.compute.internal"
+        }
+      },
       "seriesOverrides": [
         {
           "alias": "/read/",
@@ -684,7 +947,7 @@
         "h": 10,
         "w": 12,
         "x": 12,
-        "y": 27
+        "y": 51
       },
       "hiddenSeries": false,
       "id": 82,
@@ -714,6 +977,13 @@
       "renderer": "flot",
       "repeat": null,
       "repeatDirection": "v",
+      "scopedVars": {
+        "_infra_node": {
+          "selected": true,
+          "text": "ip-10-0-130-1.us-west-2.compute.internal",
+          "value": "ip-10-0-130-1.us-west-2.compute.internal"
+        }
+      },
       "seriesOverrides": [
         {
           "alias": "/read/",
@@ -798,7 +1068,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 37
+        "y": 61
       },
       "hiddenSeries": false,
       "id": 172,
@@ -826,6 +1096,13 @@
       "points": false,
       "renderer": "flot",
       "repeatDirection": "v",
+      "scopedVars": {
+        "_infra_node": {
+          "selected": true,
+          "text": "ip-10-0-130-1.us-west-2.compute.internal",
+          "value": "ip-10-0-130-1.us-west-2.compute.internal"
+        }
+      },
       "seriesOverrides": [],
       "spaceLength": 10,
       "stack": false,
@@ -902,7 +1179,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 37
+        "y": 61
       },
       "hiddenSeries": false,
       "id": 97,
@@ -931,6 +1208,13 @@
       "renderer": "flot",
       "repeat": null,
       "repeatDirection": "v",
+      "scopedVars": {
+        "_infra_node": {
+          "selected": true,
+          "text": "ip-10-0-130-1.us-west-2.compute.internal",
+          "value": "ip-10-0-130-1.us-west-2.compute.internal"
+        }
+      },
       "seriesOverrides": [],
       "spaceLength": 10,
       "stack": false,
@@ -1007,7 +1291,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 45
+        "y": 69
       },
       "hiddenSeries": false,
       "id": 174,
@@ -1035,6 +1319,13 @@
       "points": false,
       "renderer": "flot",
       "repeatDirection": "v",
+      "scopedVars": {
+        "_infra_node": {
+          "selected": true,
+          "text": "ip-10-0-130-1.us-west-2.compute.internal",
+          "value": "ip-10-0-130-1.us-west-2.compute.internal"
+        }
+      },
       "seriesOverrides": [],
       "spaceLength": 10,
       "stack": false,
@@ -1102,7 +1393,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 45
+        "y": 69
       },
       "hiddenSeries": false,
       "id": 63,
@@ -1131,6 +1422,13 @@
       "renderer": "flot",
       "repeat": null,
       "repeatDirection": "v",
+      "scopedVars": {
+        "_infra_node": {
+          "selected": true,
+          "text": "ip-10-0-130-1.us-west-2.compute.internal",
+          "value": "ip-10-0-130-1.us-west-2.compute.internal"
+        }
+      },
       "seriesOverrides": [],
       "spaceLength": 10,
       "stack": false,
@@ -1188,15 +1486,16 @@
     }
   ],
   "refresh": false,
-  "schemaVersion": 22,
+  "schemaVersion": 18,
   "style": "dark",
   "tags": [],
   "templating": {
     "list": [
       {
         "current": {
-          "text": "default",
-          "value": "default"
+          "tags": [],
+          "text": "Prometheus-aws-ocp43-2000",
+          "value": "Prometheus-aws-ocp43-2000"
         },
         "hide": 0,
         "includeAll": false,
@@ -1212,7 +1511,10 @@
       },
       {
         "allValue": null,
-        "current": {},
+        "current": {
+          "text": "ip-10-0-130-1.us-west-2.compute.internal",
+          "value": "ip-10-0-130-1.us-west-2.compute.internal"
+        },
         "datasource": "$datasource",
         "definition": "label_values(kube_node_role{role=\"infra\"}, node)",
         "hide": 0,
@@ -1234,7 +1536,10 @@
       },
       {
         "allValue": null,
-        "current": {},
+        "current": {
+          "text": "All",
+          "value": "$__all"
+        },
         "datasource": "$datasource",
         "definition": "label_values(kube_pod_info, namespace)",
         "hide": 0,
@@ -1256,7 +1561,11 @@
       },
       {
         "allValue": null,
-        "current": {},
+        "current": {
+          "isNone": true,
+          "text": "None",
+          "value": ""
+        },
         "datasource": "$datasource",
         "definition": "label_values(process_cpu_seconds_total,clustername)",
         "hide": 0,
@@ -1278,7 +1587,10 @@
       },
       {
         "allValue": null,
-        "current": {},
+        "current": {
+          "text": "All",
+          "value": "$__all"
+        },
         "datasource": "$datasource",
         "definition": "label_values(node_disk_written_bytes_total,device)",
         "hide": 0,
@@ -1300,7 +1612,10 @@
       },
       {
         "allValue": null,
-        "current": {},
+        "current": {
+          "text": "All",
+          "value": "$__all"
+        },
         "datasource": "$datasource",
         "definition": "label_values(node_network_receive_bytes_total,device)",
         "hide": 0,
@@ -1323,8 +1638,8 @@
     ]
   },
   "time": {
-    "from": "2020-01-24T20:11:43.000Z",
-    "to": "now"
+    "from": "2020-01-22T20:15:46.159Z",
+    "to": "2020-01-24T17:04:41.018Z"
   },
   "timepicker": {
     "refresh_intervals": [
@@ -1354,5 +1669,5 @@
   "timezone": "",
   "title": "Prometheus Testing",
   "uid": "-3z25TsWk",
-  "version": 9
+  "version": 6
 }
