@@ -1,34 +1,4 @@
 {
-  "__inputs": [
-    {
-      "name": "DS_CLUSTER_PROMETHEUS",
-      "label": "Cluster Prometheus",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "prometheus",
-      "pluginName": "Prometheus"
-    }
-  ],
-  "__requires": [
-    {
-      "type": "grafana",
-      "id": "grafana",
-      "name": "Grafana",
-      "version": "6.6.0-pre"
-    },
-    {
-      "type": "panel",
-      "id": "graph",
-      "name": "Graph",
-      "version": ""
-    },
-    {
-      "type": "datasource",
-      "id": "prometheus",
-      "name": "Prometheus",
-      "version": "1.0.0"
-    }
-  ],
   "annotations": {
     "list": [
       {
@@ -46,13 +16,13 @@
   "editable": true,
   "gnetId": 10092,
   "graphTooltip": 0,
-  "id": null,
-  "iteration": 1580411160889,
+  "id": 5,
+  "iteration": 1585160829870,
   "links": [],
   "panels": [
     {
       "collapsed": false,
-      "datasource": "${DS_CLUSTER_PROMETHEUS}",
+      "datasource": "Cluster Prometheus",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -109,8 +79,9 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "topk(10, container_memory_rss{namespace=\"my-ripsaw\",pod!~\"backpack.*\",container!~\"POD|container|\"})",
+          "expr": "topk(10, container_memory_rss{namespace=~\"my-ripsaw|builder-infra\",pod!~\"backpack.*\",container!~\"POD|container|\"})",
           "format": "time_series",
+          "interval": "",
           "intervalFactor": 1,
           "legendFormat": "{{node}}: {{pod}}-{{container}}",
           "refId": "A"
@@ -159,7 +130,7 @@
     },
     {
       "collapsed": false,
-      "datasource": "${DS_CLUSTER_PROMETHEUS}",
+      "datasource": "Cluster Prometheus",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -169,6 +140,13 @@
       "id": 99,
       "panels": [],
       "repeat": "_node",
+      "scopedVars": {
+        "_node": {
+          "selected": true,
+          "text": "ip-10-0-133-153.us-west-2.compute.internal",
+          "value": "ip-10-0-133-153.us-west-2.compute.internal"
+        }
+      },
       "title": "Worker: $_node",
       "type": "row"
     },
@@ -233,6 +211,13 @@
       "renderer": "flot",
       "repeat": null,
       "repeatDirection": "v",
+      "scopedVars": {
+        "_node": {
+          "selected": true,
+          "text": "ip-10-0-133-153.us-west-2.compute.internal",
+          "value": "ip-10-0-133-153.us-west-2.compute.internal"
+        }
+      },
       "seriesOverrides": [
         {
           "alias": "Busy Iowait",
@@ -392,6 +377,13 @@
       "renderer": "flot",
       "repeat": null,
       "repeatDirection": "v",
+      "scopedVars": {
+        "_node": {
+          "selected": true,
+          "text": "ip-10-0-133-153.us-west-2.compute.internal",
+          "value": "ip-10-0-133-153.us-west-2.compute.internal"
+        }
+      },
       "seriesOverrides": [
         {
           "alias": "Total",
@@ -522,6 +514,13 @@
       "renderer": "flot",
       "repeat": null,
       "repeatDirection": "v",
+      "scopedVars": {
+        "_node": {
+          "selected": true,
+          "text": "ip-10-0-133-153.us-west-2.compute.internal",
+          "value": "ip-10-0-133-153.us-west-2.compute.internal"
+        }
+      },
       "seriesOverrides": [
         {
           "alias": "/read/",
@@ -637,6 +636,13 @@
       "renderer": "flot",
       "repeat": null,
       "repeatDirection": "v",
+      "scopedVars": {
+        "_node": {
+          "selected": true,
+          "text": "ip-10-0-133-153.us-west-2.compute.internal",
+          "value": "ip-10-0-133-153.us-west-2.compute.internal"
+        }
+      },
       "seriesOverrides": [
         {
           "alias": "/read/",
@@ -750,6 +756,13 @@
       "renderer": "flot",
       "repeat": null,
       "repeatDirection": "v",
+      "scopedVars": {
+        "_node": {
+          "selected": true,
+          "text": "ip-10-0-133-153.us-west-2.compute.internal",
+          "value": "ip-10-0-133-153.us-west-2.compute.internal"
+        }
+      },
       "seriesOverrides": [],
       "spaceLength": 10,
       "stack": false,
@@ -855,6 +868,13 @@
       "renderer": "flot",
       "repeat": null,
       "repeatDirection": "v",
+      "scopedVars": {
+        "_node": {
+          "selected": true,
+          "text": "ip-10-0-133-153.us-west-2.compute.internal",
+          "value": "ip-10-0-133-153.us-west-2.compute.internal"
+        }
+      },
       "seriesOverrides": [],
       "spaceLength": 10,
       "stack": false,
@@ -960,14 +980,22 @@
       "renderer": "flot",
       "repeat": null,
       "repeatDirection": "v",
+      "scopedVars": {
+        "_node": {
+          "selected": true,
+          "text": "ip-10-0-133-153.us-west-2.compute.internal",
+          "value": "ip-10-0-133-153.us-west-2.compute.internal"
+        }
+      },
       "seriesOverrides": [],
       "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
       "targets": [
         {
-          "expr": "irate(container_cpu_usage_seconds_total{node=~\"$_node\",clustername=~\"$clustername\",namespace=\"my-ripsaw\",pod!~\"backpack.*\",container!~\"POD|container|\"}[5m])",
+          "expr": "irate(container_cpu_usage_seconds_total{node=~\"$_node\",clustername=~\"$clustername\",namespace=~\"my-ripsaw|builder-infra\",pod!~\"backpack.*\",container!~\"POD|container|\"}[5m])",
           "format": "time_series",
+          "interval": "",
           "intervalFactor": 1,
           "legendFormat": "{{ namespace }} - {{pod}} - {{ container }}",
           "refId": "A"
@@ -1056,14 +1084,22 @@
       "renderer": "flot",
       "repeat": null,
       "repeatDirection": "v",
+      "scopedVars": {
+        "_node": {
+          "selected": true,
+          "text": "ip-10-0-133-153.us-west-2.compute.internal",
+          "value": "ip-10-0-133-153.us-west-2.compute.internal"
+        }
+      },
       "seriesOverrides": [],
       "spaceLength": 10,
       "stack": false,
       "steppedLine": false,
       "targets": [
         {
-          "expr": "container_memory_rss{node=~\"$_node\",clustername=~\"$clustername\",namespace=\"my-ripsaw\",pod!~\"backpack.*\",container!~\"POD|container|\"}",
+          "expr": "container_memory_rss{node=~\"$_node\",clustername=~\"$clustername\",namespace=~\"my-ripsaw|builder-infra\",pod!~\"backpack.*\",container!~\"POD|container|\"}",
           "format": "time_series",
+          "interval": "",
           "intervalFactor": 1,
           "legendFormat": "{{namespace}} - {{pod}}",
           "refId": "A"
@@ -1120,7 +1156,7 @@
     "list": [
       {
         "current": {
-          "tags": [],
+          "selected": true,
           "text": "Cluster Prometheus",
           "value": "Cluster Prometheus"
         },
@@ -1138,16 +1174,22 @@
       },
       {
         "allValue": null,
-        "current": {},
+        "current": {
+          "text": "ip-10-0-133-153.us-west-2.compute.internal",
+          "value": [
+            "ip-10-0-133-153.us-west-2.compute.internal"
+          ]
+        },
         "datasource": "$datasource",
-        "definition": "query_result(  kube_node_role{role!~\"infra|master|workload\"} )",
+        "definition": "query_result(  kube_node_role{role!~\"master\"} )",
         "hide": 0,
         "includeAll": false,
+        "index": -1,
         "label": "worker nodes",
         "multi": true,
         "name": "_node",
         "options": [],
-        "query": "query_result(  kube_node_role{role!~\"infra|master|workload\"} )",
+        "query": "query_result(  kube_node_role{role!~\"master\"} )",
         "refresh": 2,
         "regex": "/,node=\\\"(.*)\\\",pod=/",
         "skipUrlSync": false,
@@ -1160,11 +1202,16 @@
       },
       {
         "allValue": null,
-        "current": {},
+        "current": {
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
+        },
         "datasource": "$datasource",
         "definition": "label_values(kube_pod_info, namespace)",
         "hide": 0,
         "includeAll": true,
+        "index": -1,
         "label": null,
         "multi": false,
         "name": "namespace",
@@ -1182,11 +1229,17 @@
       },
       {
         "allValue": null,
-        "current": {},
+        "current": {
+          "text": "All",
+          "value": [
+            "$__all"
+          ]
+        },
         "datasource": "$datasource",
         "definition": "label_values(node_disk_written_bytes_total,device)",
         "hide": 0,
         "includeAll": true,
+        "index": -1,
         "label": "Block Device",
         "multi": true,
         "name": "block_device",
@@ -1204,11 +1257,17 @@
       },
       {
         "allValue": null,
-        "current": {},
+        "current": {
+          "text": "All",
+          "value": [
+            "$__all"
+          ]
+        },
         "datasource": "$datasource",
         "definition": "label_values(node_network_receive_bytes_total,device)",
         "hide": 0,
         "includeAll": true,
+        "index": -1,
         "label": "Network Device",
         "multi": true,
         "name": "net_device",
@@ -1226,11 +1285,17 @@
       },
       {
         "allValue": null,
-        "current": {},
+        "current": {
+          "isNone": true,
+          "selected": true,
+          "text": "None",
+          "value": ""
+        },
         "datasource": "$datasource",
         "definition": "label_values(process_cpu_seconds_total,clustername)",
         "hide": 0,
         "includeAll": false,
+        "index": -1,
         "label": null,
         "multi": false,
         "name": "clustername",
@@ -1249,7 +1314,7 @@
     ]
   },
   "time": {
-    "from": "now-5m",
+    "from": "2020-03-25T18:25:45.000Z",
     "to": "now"
   },
   "timepicker": {
@@ -1280,5 +1345,8 @@
   "timezone": "",
   "title": "Application Performance Dashboard - Aakarsh",
   "uid": "jbriDjPWk",
-  "version": 7
+  "variables": {
+    "list": []
+  },
+  "version": 3
 }
