@@ -5852,8 +5852,8 @@
       {
         "allValue": ".*",
         "current": {
-          "text": "openshift-kube-apiserver",
-          "value": "openshift-kube-apiserver"
+          "text": "All",
+          "value": "$__all"
         },
         "datasource": "$datasource",
         "definition": "label_values(kube_pod_info, namespace)",
