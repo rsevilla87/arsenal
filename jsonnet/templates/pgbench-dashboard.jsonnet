@@ -3,7 +3,7 @@ local es = grafana.elasticsearch;
 
 local tps_report = grafana.graphPanel.new(
   title='TPS Report',
-  datasource='$datasource1',test
+    datasource='$datasource1',
   format='ops',
   transparent=true,
   legend_show=false,
